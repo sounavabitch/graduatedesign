@@ -48,31 +48,47 @@
   
   %1.1节
  	 \subsection{\H 研究背景、目的及意义}
- 	 在地震动检测系统中，通常会受到各种噪声的影响
+ 	 \paragraph{ \quad} 在地震动检测系统中，通常会受到各种噪声的影响，而恒虚警率检测技术在一定程度上可以提高地震动检测系统在噪声环境下目标信号识别的准确性。为提高噪声环境下目标信号检测的准确性，提高地震动检测系统的准确度，因此采用一定的虚警检测方法在噪声背景下将目标信号准确检测出来是有必要的。本设计在此背景之下，将对噪声环境下的恒虚警技术进行研究，并针对所使用的地震动检测系统选择合适的恒虚警处理方法。
  	 
  	 
   %1.2节
  	 \subsection{\H 设计主要工作}
+ 	 \paragraph{ \quad} 本设计使用单片机将前级传感器采集回来的模拟量进行采样处理并进行简单软件滤波使采样信号更加稳定、可靠，之后确定适当的恒虚警算法进行处理，并确定相应的门限因子，使后级可以更方便的使用信号进行进一步的处理、运算。因此，对本设计而言，主要工作有单片机的选型、软件滤波算法的对比与选择及恒虚警算法的实现等。具体流程框图如下
+ 	 
  	 
  	%1.3节 
- 	  \subsection{\H 论文章节安排}
+ 	  \subsection{\H 论文内容结构}
+        \quad \quad 第一章：绪论
+         \par 本章主要介绍了本设计的研究背景以及主要工作
+         \paragraph{ \quad} 第二章：单片机的选型与介绍
+          \par 本章主要介绍选择了MSP430f149型号的单片机作为主控芯片，对该型号单片机一些常用模块及优缺点进行了简单介绍并阐述了选择该型号单片机的理由。
+          \paragraph{ \quad} 第三章：软件滤波算法的选择与实现
+          \par 本章主要介绍常见的一些软件滤波算法，并结合单片机的处理能力以及信号的特性等选择出合适的滤波算法。
+           \paragraph{ \quad} 第四章：恒虚警算法的选择与实现
+             \par  
                
-              % \subsubsection{\H 国外} 
-                  % \paragraph{你好}is in the center of Beijing 
-                 % 国外的月亮特别圆
+               
+               
+               %\subsubsection{\H 国外} 
                   
                    
-                    %换页
-                      \newpage
                    
                    
-\section{\xiaosanhao \H 第二章}
-这是引言 \LaTeXe
+\section{\xiaosanhao \H 第二章 \quad 单片机的选型与介绍}
+第二章 \LaTeXe
 
 
 
-\newpage
- \section{\xiaosanhao \H 第三章}
+%\newpage
+ \section{\xiaosanhao \H 第三章 \quad 软件滤波算法的选择与实现}
+ 
+ 
+ 
+ 
+ 
+ \section{\xiaosanhao \H 第四章 \quad 恒虚警算法的选择与实现}
+ 
+  \section{\xiaosanhao \H 第五章 \quad 系统分析与改进}
  
   \section{\xiaosanhao \H 附录A \quad 测试平台与实物}
   
