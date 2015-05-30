@@ -1,0 +1,84 @@
+
+
+\documentclass[12pt]{article} %这个我就不多说了，头文件
+\usepackage{url} %这个我也不多说了
+\usepackage{fontspec,xltxtra,xunicode} %最新的mactex都有
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont{Songti SC} %设置中文字体
+\XeTeXlinebreaklocale “zh”
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt %文章内中文自动换行，可以自行调节
+\newfontfamily{\H}{Heiti SC} %设定新的字体快捷命令
+\newfontfamily{\E}{Weibei SC} %设定新的字体快捷命令
+
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}% 字号设置
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\xiaosanhao}{\fontsize{15pt}{\baselineskip}\selectfont}    % 字号设置
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}   % 字号设置
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}    % 字号设置
+
+
+
+%页眉设置
+\lhead{}
+\chead{ 中北大学2011届毕业设计说明书}
+\rhead{}
+
+%页脚设置
+\lfoot{}
+\cfoot{}
+\rfoot{第 \thepage 页 \quad 共 \uppercase\expandafter{\romannumeral1} 页}
+\pagenumbering{Roman}
+
+
+
+
+\begin{document}
+\renewcommand{\contentsname}{\centerline{ \sihao \H 目\quad 录}}
+  \tableofcontents 
+    \newpage
+  
+  \rfoot{第 \thepage 页 \quad 共  50 页}
+ \pagenumbering{arabic}
+     
+    %第一章： 
+ \section{\xiaosanhao \H 绪论}  
+  
+  %1.1节
+ 	 \subsection{\H 研究背景、目的及意义}
+ 	 在地震动检测系统中，通常会受到各种噪声的影响
+ 	 
+ 	 
+  %1.2节
+ 	 \subsection{\H 设计主要工作}
+ 	 
+ 	%1.3节 
+ 	  \subsection{\H 论文章节安排}
+               
+              % \subsubsection{\H 国外} 
+                  % \paragraph{你好}is in the center of Beijing 
+                 % 国外的月亮特别圆
+                  
+                   
+                    %换页
+                      \newpage
+                   
+                   
+\section{\xiaosanhao \H 第二章}
+这是引言 \LaTeXe
+
+
+
+\newpage
+ \section{\xiaosanhao \H 第三章}
+ 
+  \section{\xiaosanhao \H 附录A \quad 测试平台与实物}
+  
+  \section{\xiaosanhao \H 附录B \quad 主要程序}
+  
+    \section{\xiaosanhao \H 参考文献}
+    
+      \section{\xiaosanhao \H 致谢}
+ \end{document}
