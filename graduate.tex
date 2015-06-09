@@ -4,6 +4,10 @@
 \usepackage{url} %这个我也不多说了
 \usepackage{fontspec,xltxtra,xunicode} %最新的mactex都有
 \usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{paralist}
+
 \pagestyle{fancy}
 \defaultfontfeatures{Mapping=tex-text}
 \setromanfont{Songti SC} %设置中文字体
@@ -29,7 +33,7 @@
 %页脚设置
 \lfoot{}
 \cfoot{}
-\rfoot{第 \thepage 页 \quad 共 \uppercase\expandafter{\romannumeral1} 页}
+\rfoot{第 \thepage 页 \quad 共 \uppercase\expandafter{\romannumeral2} 页}
 \pagenumbering{Roman}
 
 
@@ -55,17 +59,25 @@
  	 \subsection{\H 设计主要工作}
  	 \paragraph{ \quad} 本设计使用单片机将前级传感器采集回来的模拟量进行采样处理并进行简单软件滤波使采样信号更加稳定、可靠，之后确定适当的恒虚警算法进行处理，并确定相应的门限因子，使后级可以更方便的使用信号进行进一步的处理、运算。因此，对本设计而言，主要工作有单片机的选型、软件滤波算法的对比与选择及恒虚警算法的实现等。具体流程框图如下
  	 
+ 	 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=5in]{1.1.1.png} 
+  		  \caption{1.1.1 }
+  		 \label{fig:1.1.1}
+		\end{figure}
+ 	 
  	 
  	%1.3节 
  	  \subsection{\H 论文内容结构}
-        \quad \quad 第一章：绪论
+         \paragraph{ \quad} 第一章：绪论
          \par 本章主要介绍了本设计的研究背景以及主要工作
          \paragraph{ \quad} 第二章：单片机的选型与介绍
           \par 本章主要介绍选择了MSP430f149型号的单片机作为主控芯片，对该型号单片机一些常用模块及优缺点进行了简单介绍并阐述了选择该型号单片机的理由。
-          \paragraph{ \quad} 第三章：软件滤波算法的选择与实现
+           \paragraph{ \quad} 第三章：软件滤波算法的选择与实现
           \par 本章主要介绍常见的一些软件滤波算法，并结合单片机的处理能力以及信号的特性等选择出合适的滤波算法。
-           \paragraph{ \quad} 第四章：恒虚警算法的选择与实现
-             \par  
+            \paragraph{ \quad} 第四章：恒虚警算法的分类与选择
+             \paragraph{ \quad} 第五章：恒虚警技术的实现与分析
+               
                
                
                
@@ -74,27 +86,439 @@
                    
                    
                    
+
+
+%!第二章
+
 \section{\xiaosanhao \H 第二章 \quad 单片机的选型与介绍}
-第二章 \LaTeXe
+%第二章 \LaTeXe
+本设计中，该系统主要需要A/D转换、运算及逻辑运算等功能。德州仪器公司生产的MSP430f149单片机是一款16位的单片机，具有体积小、功耗低等优点，其中内置12位A/D转换模块，配合其他多种片内资源，可以满足系统的需求，同时无需复杂的外围电路。
+	 \subsection{\H MSP430f149片内资源简介}
+	 	
+	 	\subsubsection{\H 时钟模块} 
+	 	时钟模块结构图如下：
+	 	\begin{figure}[H] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=8cm]{2.1.1.jpg} 
+  		  \caption{2.1.1 caption}
+  		 \label{fig:2.1.1}
+		\end{figure}
+		时钟模块对于单片机而言控制着指令执行的节拍，对于单片机功能精确执行有着重要的意义，MSP430F149有三个时钟信号源并提供三个时钟信号输出供其他模块使用，在其他模块中一般可通过控制寄存器xxCTL来实现输入时钟信号的选择，以使各模块工作在不同的频率之下，使得该单片机既可达到较高频率实现通信采样等功能又可实现低频精确控制提高单片机作用的时间精度。
+		\par MSP430F149共有三个时钟信号源：
+		\par 1、LFXT1CLK: 低频/高频时钟源.由外接晶体振荡器,无需外接两个振荡电容器。需要的晶振为XIN和XOUT所接晶振，一般都是低频32768HZ的，有时也会接450k-8M的，但是需要接负载电容，同时需设置。
+		\par 2、XT2CLK: 高频时钟源.由外接晶体振荡器。需要外接两个振荡电容器，需要的晶振为X2IN和X2OUT所接晶振，一般接的都是450k-8M的高频晶振
+		\par 3、DCOCLK: 数字可控制的RC振荡器。 DCO随电压和工作温度变化都比较大，具体调节分三步
+		\par（1）选择BCSCTL1.RSELx 确定时钟的标称频率。
+		\par（2）选择DCOCTL.DCOx 在标称频率基础上分段粗调。
+		\par（3）选择DCOCTL.MODx 的值进行细调。
+		
+		\par MSP430 单片机时钟模块提供 3 个时钟信号输出,以供给片内各部电路使用：
+		\par 1、MCLK 系统主时钟。除了CPU 运算使用此时钟信号外，外围模块也可以使用。MCLK 可以选择任何一个振荡器产生的时钟信号并进行1、2、4、8 分频作为其信号源。
+		\par 2、SMCLK 系统子时钟。外围模块可以使用，并且在使用之前可以通过各模块的寄存器实现分频。SMCLK 可以选择任何一个振荡器产生的时钟信号并进行1、2、4、8 分频作为其信号源。
+		\par 3、ACLK 辅助时钟。外围模块可以使用，并且在使用之前可以通过各模块的寄存器实现分频。ACLK 只能由LFXT1 进行1、2、4、8 分频作为其信号源。
+	 	
+	 	\subsubsection{\H A/D转换模块} 
+	 	A/D转换模块结构图如下：
+	 	\begin{figure}[H] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=8cm]{2.1.2.jpg} 
+  		  \caption{2.1.2 caption}
+  		 \label{fig:2.1.2}
+		\end{figure}
+		由图可知，ADC12 模块是由以下几部分组成:输入的 16 路模拟开关,ADC内部电压参考源,ADC12 内核,ADC 时钟源部分,采集与保持/触发源部分,ADC 数据输出部分, ADC 控制寄存器等组成。
+		主要寄存器有：
+		
+		
+		
+		
+\begin{table}[h]
+			\begin{tabular}{|c|c|c|}
+			\hline
+			%\hline
+		寄存器 & 寄存器缩写 & 寄存器含义  \\
+		%\hline
+		%label 2-1 & label 2-2 & label 3-3 & label 4-4 & label 5-5 \\
+		\hline
+		\multirow{2}{*}{转换控制寄存器} & ADC12CTL0 & 转换控制寄存器 0 \\
+		\cline{2-3}
+		& ADC12CTL1 & 转换控制寄存器 1 \\
+		\hline
+		\multirow{3}{*}{中断控制寄存器} & ADC12IFG & 中断标志寄存器 \\
+		
+		\cline{2-3}
+		& ADC12IE & 中断使能寄存器 \\
+		\cline{2-3}
+		& ADC12IV & 中断向量寄存器 \\
+		\hline
+		\multirow{2}{*}{存储及其控制寄存器} & ADC12MCTL0-ADC12MCTL15 & 存储控制寄存器 0-15 \\
+		\cline{2-3}
+		&ADC12MEM0-ADC12MCTL15 & 存储寄存器 0-15 \\
+		\hline
+\end{tabular}
+\caption{My first table}
+\end{table}
+	对于A/D转换模块，一般操作步骤如下：
+	\par（1）、I/O复用，使指定I/O功能变为TXD/RXD（一般为P3.4/P3.5）；
+	 	\par （2）、使能 USART 模块并设置数据数据传输格式（一般为8n1，一个起始位,8个数据位,一个停止位）；
+	 	\par （3）、选择USART模块时钟信号源并设置波特率；
+	 	\par （4）、初始化USART状态机并使能接收中断；
+	 	\par （5）、向UxTXBUF发送缓冲寄存器中传送数据实现发送，利用USART接收中断，从UxRXBUF中读取接收到的信息。
+		
+			
+					
+	 	\subsubsection{\H USART 串行异步通讯模块} 
+	 	USART模块结构图如下：
+	 	\begin{figure}[H] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=8cm]{2.1.3.jpg} 
+  		  \caption{2.1.3 caption}
+  		 \label{fig:2.1.3}
+		\end{figure}
+		在MSP430f149型号单片机中有两个通信硬件模块USART0 和 USART1，其寄存器如下（以USART0为例）：
+		
+		
+		
+\begin{table}[h]
+			\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			%\hline
+		寄存器 & 缩写 & 读写类型 & 地址	& 初始化状态  \\
+		\hline
+		控制寄存器 & U0CTL & 读/写 & 070H & PUC 后 001H \\
+		\hline
+		发送控制寄存器 & U0TCTL & 读/写 & 71H & PUC 后 001H \\
+		\hline
+		接收控制寄存器 & U0RCTL & 读/写 & 72H & PUC 后 000H \\
+		\hline
+		波特率调整控制寄存器 & U0MCTL & 读/写 & 73H & 不变 \\
+		\hline
+		波特率控制寄存器 0 & U0BR0 & 读/写 & 74H & 不变 \\
+		\hline
+		波特率控制寄存器 1 & U0BR1 & 读/写 & 75H & 不变 \\
+		\hline
+		接收缓冲器  & U0RXBUF & 读 & 76H & 不变 \\
+		\hline
+		发送缓冲器  & U0TXBUF & 读/写 & 77H & 不变 \\
+		\hline
+		SFR 模块使能寄存器 1  & ME1 & 读/写 & 004H & PUC 后 000H \\
+		\hline
+		FR 模块使能寄存器 1  & IE1 & 读/写 & 000H & PUC 后 000H \\
+		\hline
+		FR 模块使能寄存器 1  & IFG1 & 读/写 & 002H & PUC 后 082H \\
+		\hline
+
+\end{tabular}
+\caption{USART0 的寄存器 （注：USART1与USART0相似，但寄存器地址不同。）}
+\label{}
+\end{table}
 
 
 
-%\newpage
+
+	 	对于USART模块，一般操作步骤如下：
+	 	\par（1）、I/O复用，使指定I/O功能变为TXD/RXD（一般为P3.4/P3.5）；
+	 	\par （2）、使能 USART 模块并设置数据数据传输格式（一般为8n1，一个起始位,8个数据位,一个停止位）；
+	 	\par （3）、选择USART模块时钟信号源并设置波特率；
+	 	\par （4）、初始化USART状态机并使能接收中断；
+	 	\par （5）、向UxTXBUF发送缓冲寄存器中传送数据实现发送，利用USART接收中断，从UxRXBUF中读取接收到的信息。
+	 \subsection{\H MSP430f149在本设计中的应用}
+	 在本设计中，MSP430f149单片机通过内置的A/D转换模块将前级信号调和电路输入的电压信号进行采样，输入单片机内部。通过内部编程实现脉冲积累、恒虚警检测、滑窗积累确定出最佳检测门限，最后通过USART 串行通讯模块将采集到的有效信号输出至下级处理器进行识别等其他功能。具体功能如下图所示：
+	 \begin{figure}[H] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=8cm]{function.jpg} 
+  		  \caption{2.1.2 caption}
+  		 \label{fig:2.1.2}
+		\end{figure}
+	 	
+		
+
+%%%%%%!!the end of the chapter 2!!%%%%%%%%
+
+
+%!第二章
+
  \section{\xiaosanhao \H 第三章 \quad 软件滤波算法的选择与实现}
  
  
+ 	\subsection{\H 常见滤波算法介绍}
+ 	
+ 		\subsubsection{\H 限幅滤波法} 
+ 		\begin{compactitem} 
+ 			\item 原理
+ 			\par 根据经验判断，确定两次采样允许的最大偏差值,记为$A$，当每次检测到新值时进行判断：
+ 			\par 如果本次检测值  $CurValue$ 与上一次检测值 $PreValue $之差$CurValue－PreValue <= A$，则本次值有效，存入内存中；
+ 			\par 如果本次检测值  $CurValue$ 与上一次检测值 $PreValue $之差$CurValue－PreValue >A$，则本次值$CurValue$无效，将其丢弃，使用上次值$PreValue $代替本次值$CurValue$，存入内存中。
+			
+			\item 优点
+			\par 能有效克服因偶然因素引起的脉冲干扰，实现最基本的滤波。
+			
+			\item 缺点
+			\par 无法抑制周期性的干扰，平滑度差，且$A$的选择对结果有较大的影响
+			
+		 \end{compactitem}	
+		 
+ 		\subsubsection{\H 算术平均滤波法} 
+ 		
+ 		\begin{compactitem} 
+ 			\item 原理
+ 			\par 连续取N个采样值进行算术平均运算，将其值存入内存作为一个采样结果。在数字信号处理系统中，为提高运算速度，N值的选择通常为$2^n$。N值较大时信号平滑度较高，但灵敏度较低，因此对于一般流量而言，N=16；N值较小时信号平滑度较低，但灵敏度较高，因此对于压力而言，N=4。
+
+			\item 优点
+			\par 适用于对一般具有随机干扰的信号进行滤波，这样信号的特点是有一个平均值，信号在某一数值范围附近上下波动
+
+			\item 缺点
+			\par 对于测量速度较慢或要求数据计算速度较快的实时控制不适用，比较浪费RAM
+			
+			\item 改进
+			\par 中位值平均滤波法
+			\par 相当于中位值滤波法与算术平均滤波法的组合，即连续采样N个数据，去掉一个最大值和一个最小值然后计算N-2个数据的算术平均值，对于偶然出现的脉冲性干扰，可消除由于脉冲干扰所引起的采样值偏差，检测速度较慢。
+			
+			
+		 \end{compactitem}	
+ 		
+ 		\subsubsection{\H 递推平均滤波法} 
+ 		
+ 		\begin{compactitem} 
+ 			\item 原理
+ 			\par 把连续取N个采样值看成一个队列队列的长度固定为N每次采样到一个新数据放入队尾,并扔掉原来队首的一次数据.(先进先出原则)把队列中的N个数据进行算术平均运算,就可获得新的滤波结果
+   %N值的选取：流量，N=12；压力：N=4；液面，N=4~12；温度，N=1~4
+			
+			\item 优点
+			\par 对周期性干扰有良好的抑制作用，平滑度高适用于高频振荡的系统 
+			
+			\item 缺点
+			\par 灵敏度低，对偶然出现的脉冲性干扰的抑制作用较差不易消除。由于脉冲干扰所引起的采样值偏差不适用于脉冲干扰比较严重的场合，
+ 且运算速度较慢。
+ 			\item 改进
+ 			\par （1）、限幅平均滤波法
+ 			\par 相当于限幅滤波法与递推平均滤波法相结合，将每次采样得到的新数据先进行限幅处理，再送入队列进行递推平均滤波处理。对于偶然出现的脉冲性干扰，可消除由于脉冲干扰所引起的采样值偏差，同样存在运算速度较慢的缺点。
+ 			\par （2）、加权递推平均滤波法
+ 			\par 再递推平均滤波法的基础上，对不同时刻的数据加以不同的权值，通常越接近的数据其权值越大。适用于有较大纯滞后时间常数的对象
+和采样周期较短的系统；对于纯滞后时间常数较小，采样周期较长，变化缓慢的信号不能迅速反应系统当前所受干扰的严重程度，滤波效果差。
+			
+		 \end{compactitem}	
+ 		
+ 		\subsubsection{\H 消抖滤波法} 
+
+		\begin{compactitem} 
+ 			\item 原理
+ 			\par 设置一个滤波计数器将每次采样值与当前有效值比较：
+   			\par （1）、如果采样值＝当前有效值，则计数器清零
+                 \par（2）、 如果采样值大于或小于当前有效值，则计数器加一，并判断计数器是否大于设定阈值。
+     			\par （3）、 如果计数器溢出,则将本次值替换当前有效值,并清计数器
+			
+			\item 优点
+			\par 对于变化缓慢的被测参数有较好的滤波效果，可避免临界值附近数值的反复变化。
+			
+			\item 缺点
+			\par 不适合快速变化的系统，且在一定情况下存在较大的误差。
+ 			\item 改进
+ 			\par 限幅消抖滤波法
+ 			\par 限幅滤波法与消抖滤波法相结合，先限幅，后消抖。改进了某些缺陷并且减少了突变的干扰值。但对于参数变化较快的系统并不合适。
+			
+		 \end{compactitem}	
+		\subsubsection{\H IIR 数字滤波器 } 
+ 	
+ 		\begin{compactitem} 
+ 			\item 原理
+ 			\par 确定信号带宽， 选择适当的参数进行滤波
+ 			\par $Y(n) = a_1*Y(n-1) + a_2*Y(n-2) + ... + a_k*Y(n-k) + b_0*X(n) + b_1*X(n-1) + b_2*X(n-2) + ... + b_k*X(n-k)$
+			
+			\item 优点
+			\par 高通，低通，带通，带阻可任意选择，实现功能复杂且实现简单
+			
+			\item 缺点
+			\par 参数选择困难，同时运算量过大。
+			
+		 \end{compactitem}	
+ 	
+ 	\subsection{\H 本设计中滤波算法的选择与具体实现}
+ 	对于本设计中采样信号而言，对于信号精度要求并不高，且主要噪声为白噪声；单片机片内内存、运算速度也满足要求。因此，为处理方便，采用算数平均滤波法即可。考虑到信号的噪声背景与单片机处理速度等方面因素，将算数平均滤波法中的N选定为8.
+ 	\par 结合MSP430f149型号单片机，具体实现方法如下：
+ 	\par （1）、开启A/D转换模块，并进行初始化；
+ 	\par （2）、将每次采样到的数字量$s$进行累加，累加值记为$Sum_s$；
+ 	\par （3）、当采样次数达到N时，$Sum_s/N$所得结果即为该N个采样结果的平均值$Ave_s$，将该值显示并存储于另一个数组result中，等待进一步处理；
+ 	\par （4）、重复（2）、（3）即可完成滤波。
  
  
  
- \section{\xiaosanhao \H 第四章 \quad 恒虚警算法的选择与实现}
  
-  \section{\xiaosanhao \H 第五章 \quad 系统分析与改进}
+ %%%%%%!!the end of the chapter 3!!%%%%%%%%
  
-  \section{\xiaosanhao \H 附录A \quad 测试平台与实物}
-  
-  \section{\xiaosanhao \H 附录B \quad 主要程序}
+ 
+ \section{\xiaosanhao \H 第四章 \quad 恒虚警技术的分类与选择}
+ 	\subsection{\H 目标信号检测的基本原理}
+ 	从经典信号检测理论中我们可知，最优检测系统一般可简化为两个部分：
+ 	\par 1、门限检测器
+ 	\par 2、似然比
+ 	\par 在不同的检测系统中，使用不同的检测准则，则具有不同的似然比函数，因此会得到不同的检测门限值，例如使用纽曼－皮尔逊（Newman-Pearson）准则作为检测标准，则可以通过预先设置的虚警概率计算出相应的检测门限。
+ 	\par 假设A/D转换装置采集到的信号为$s(t)$，噪声信号为$n(t)$，实际目标信号为$x(t)$，则有以下两个假设：
+ 	
+ 	
+ 	\begin{equation}
+	\left\{
+\begin{array}{rcl}
+%F_L       &      & {0      <      S_L}\\
+%F^*_L     &      & {S_L \leq 0 < S_M}\\
+%F^*_R     &      & {S_M \leq 0 < S_R}\\
+%F_R       &      & {S_R \leq 0}
+
+H1:s(t)=x(t)+n(t)\quad 有目标\\
+H0:s(t)=x(t) \quad 无目标\\
+
+\end{array} \right. 
+	\end{equation}
+	信号存在性检测问题就是要把所有观测空间划分为两个区域$D_0$和$D_1$，当观测值落入$D_0$时，判决$H_0$为真，即说明无目标信号出现；当观测值落入$D_1$时，判决$H_1$为真，即说明有目标信号出现。检测的关键就是寻找观察空间的最佳划分方法。
+	\par 下面将介绍几种常用的目标存在性检测准则：
+	
+	\begin{compactitem} 
+ 			\item 贝叶斯准则
+ 			\par 在知道先验概率和代价因子的情况下，就可以使用贝叶斯准则进行判决，先通过先验概率和代价因子计算出平均风险，然后尽可能时平均风险最小化。但一般情况下，在实际应用中，代价因子很难确定，常常假定正确的判断不付出代价，两类错误的代价相等，此时贝叶斯准则就等效于最小错误概率准则。
+			\item 极大极小化准则
+			\par 在工程中仅知道代价因子而不知道先验概率，所以不能使用贝叶斯准则，这时一种合理的方法是先求出最大风险的表达式，然后求该表达式的极小值，此即极大极小准则。
+			\item 纽曼－皮尔逊（Newman-Pearson）准则
+			\par 在很多时候，我们很难确定代价因子和先验概率，这时就需要寻找一个不包含这两个因素的最佳准则，这就是纽曼－皮尔逊准则：在$P(D1|H0)$条件下，使检测概率$P(D0|H1)$最大。在检测系统中，噪声的功率是不断变化的，如果采用恒定的门限值，虚警概率也会随之不断变化。为使虚警概率保持恒定，并保持检测概率尽可能的大，我们一般要采用纽曼－皮尔逊准则，即使下面的目标函数：
+			\begin{equation}
+	Q = P(D0|H1)+\mu P(D1|H0)
+	\end{equation}
+取得极小值，在上式中，$\mu$为拉格朗日乘数，类似于贝叶斯准则，纽曼－皮尔逊准则的似然门限比应为：
+  \begin{equation}
+	\Lambda_0 = \frac {P(H0)C_{10}}{P(H1)C_{01}}
+	\end{equation}
+	其中，$C_{10}$表示虚警代价$C_{01}$表示漏报代价。
+
+		 \end{compactitem}	
+	在实际检测中，检测结果可能存在三种情况：
+	\par （1）目标存在的情况下检测出目标存在，称为检测；
+	\par （2）只存在噪声但是检测出目标存在，称为虚警；
+	\par （3）目标存在的情况下未检测出目标存在，称为漏检。
+	\par 其中，虚警可用虚警概率来表示，虚警概率是指当地震动检测系统检测信号中只存在噪声的时候，该信号超过检测门限制的概率。门限电压与噪声功率息息相关，如果门限电压过低，则可能大量噪声通过，导致虚警概率过高；如果门限电压过高，目标将很难通过门限，造成漏检，使得系统可能无法达到预期的检测概率。
+	\par 因此我们根据某一检测准则，根据虚警概率等信息确定出检测门限，并通过信号过门限的情况，即可判决目标信号的存在与否。
+	
+ 	\subsection{\H 恒虚警技术简介}
+ 	\subsubsection{\H 恒虚警技术的目的与方法 } 
+ 	\paragraph{ \quad}  恒虚警率处理是通过给检测策略提供检测阈值并使虚警概率恒定且最小化的一种信号处理算法， 其目的是保持信号检测时的虚警概率恒定并保证外部噪声等干扰因素对系统的虚警概率影响最小。通过门限随着背景噪声的强度自适应变化，保持虚警概率恒定。当目标信号不存在即仅存在噪声信号的情况下，检出有目标存在的概率称为虚警概率（用$P_f$来表示），而当目标存在时，检测出目标的概率为检测概率（用$P_d$来表示）。
+ 	\par 由上述介绍可知，恒虚警技术的主要目的即为使用某种特定的算法在某种特定的环境背景下（如本设计中的噪声背景下）计算出一个门限电压$U_T$对采样信号进行检测判别是否有目标出现，同时要尽可能保持一个较低的恒定的虚警概率$P_f$，并使得系统的检测概率$P_d$为最大。
+
+ 	\par 在设计中，我们用$r$表示噪声幅值，假设虚警门限为$U_T$，虚警概率为 $P_f$可以由下式求出：
+	\begin{equation}
+	P_f =P (U_t \leq r < \infty) = \int_{ U_T }^{  \infty } {\frac{r}{\sigma^2}e^{-\frac{r^2}{2\sigma^2}}dr}  = e^{-\frac{U_T^2}{2\sigma^2}}
+	\end{equation}
+	
+	
+	根据纽曼－皮尔逊准则，可在已知虚警概率$P_f$的情况下，由公式(2)推出门限电压$U_T$为：
+	\begin{equation}
+	U_T=\sqrt{2\sigma^2ln(\frac{1}{P_f})}
+	\end{equation}
+	
+	如果$\sigma^2$为常数，则可根据公式(5)确定出一个恒定的检测门限，但在一般情况下噪声信号为一个随机变化的值，因此，为保证虚警概率恒定需要不断改变检测门限值。因这种不断改变检测门限来保持虚警概率$P_f$恒定的过程即为恒虚警（CFAR）。
+	\par 由上述可知，利用恒虚警算法求检测门限的过程可分为三步：
+	\begin{compactitem} 
+ 			\item 确定噪声分布的概率密度函数
+ 			
+			\item 确定概率密度函数中的参数
+
+			\item 根据虚警概率与检测门限的关系动态改变检测门限
+
+
+		 \end{compactitem}	
+	
+
+ 	\subsubsection{\H 恒虚警技术的分类 } 
+ 	\begin{table}[h]
+			\begin{tabular}{|c|c|c|}
+			\hline
+			%\hline
+		类型 & 名称 & 缩写  \\
+		%\hline
+		%label 2-1 & label 2-2 & label 3-3 & label 4-4 & label 5-5 \\
+		\hline
+		\multirow{4}{*}{均值类} & 单元平均恒虚警检测器 & CA-CFAR \\
+		\cline{2-3}
+		& 平均选大恒虚警检测器 &  GO-CFAR\\
+		\cline{2-3}
+		& 平均选小恒虚警检测器 &  SO-CFAR\\
+		\cline{2-3}
+		& 加权平均恒虚警检测器 &  WCA-CFAR\\
+		\hline
+		
+		%\multirow{3}{*}{中断控制寄存器} & ADC12IFG & 中断标志寄存器 \\
+		
+		排序类&有序统计恒虚警检测器&OS-CFAR \\
+		\hline
+		\multirow{2}{*}{删除类} & 删除均值恒虚警检测器 & CMLD-CFAR  \\
+		\cline{2-3}
+		&剔除平均恒虚警检测器 &  TM-CFAR\\
+		\hline
+\end{tabular}
+\caption{恒虚警技术的分类}
+\end{table}
+		由上表可知，主要恒虚警算法主要存在三大类，分别为均值类、排序类和删除类，其中排序类与删除类主要为了应对杂波背景下的恒虚警检测，而均值类的恒虚警算法更适合噪声背景下的恒虚警检测，故此处将重点介绍均值类中的四种恒虚警检测算法。
+		\par 其处理过程如下框图：
+		\begin{figure}[h] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=5in]{mlcfar.jpg} 
+  		  \caption{1.1.1 }
+  		 \label{fig:1.1.1}
+		\end{figure}
+		\begin{compactitem} 
+ 			\item 单元平均恒虚警检测器（CA-CFAR）
+ 			
+ 			
+			\item 平均选大恒虚警检测器  （GO-CFAR）
+
+			\item 平均选小恒虚警检测器  （ SO-CFAR）
+			
+			\item 加权平均恒虚警检测器 （  WCA-CFAR）
+
+
+		 \end{compactitem}	
+		
+		
+	\subsection{\H 本设计中恒虚警技术的选择 } 
+ 	  \paragraph{ \quad} 根据4.1节所介绍的关于信号存在性检测方法及4.2节恒虚警技术的相关介绍并结合地震动检测系统的实际情况我们可知，在本检测系统中，错误代价和先验概率往往未知，因此应当采用纽曼－皮尔逊准则进行检测较为合适。即在给定的恒虚警概率$P_f$的前提下，保持$P_f$使得检测概率$P_d$最大。
+ 	\par 首先，假设地震动检测系统中存在的噪声可近似的看作均值为零的高斯白噪声［赵也］，其概率密度函数为：
+	\begin{equation}
+	p(v) = \frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{v^2}{2\sigma^2}}
+	\end{equation}
+	其中，$\sigma^2$是噪声功率，高斯噪声在检测系统中的电压值服从瑞丽分布：
+	\begin{equation}
+	p(r) = \frac{r}{\sigma^2}e^{-\frac{r^2}{2\sigma^2}}  {\quad(r    \geq    0)}
+	\end{equation}
+	同时，根据本系统要求的虚警概率为$1次/24小时$，经过实际测量，我们可假设每小时平均检测50次，因此真实虚警概率约为$1/1200$，单元平均恒虚警检测器 CA-CFAR，即可满足系统设计要求。
+	\par 综上所述，根据噪声分布函数以及虚警概率的要求等方面，本设计可以采用瑞丽型单元平均恒虚警率检测器。而本设计最终也采用并实现了该恒虚警率检测器。 
+ 	
+ 
+  \section{\xiaosanhao \H 第五章 \quad 恒虚警技术的实现与分析}
+  地震动信号恒虚警处理
+  	\subsection{\H 恒虚警技术的实现 }
+  	\subsubsection{\H Matlab仿真 }
+  	通过第四章的分析，我们将采用瑞丽型单元平均恒虚警率检测器，由于在Matlab中可使用random函数产生随机数实现对瑞丽分布的噪声信号进行模拟，并通过编程，可实现CA-CFAR的仿真，具体执行算法步骤如下：
+  	\par （1）、根据信噪比产生一定的
+  	\subsubsection{\H 在MSP430f149中实现 }
+  	
+  	
+  	\subsection{\H 恒虚警检测器检测结果的分析 } 
+  	
+  	 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=5in]{5db.jpg} 
+  		  \caption{1.1.1 }
+  		 \label{fig:1.1.1}
+		\end{figure}
+		
+		 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=5in]{30db.jpg} 
+  		  \caption{1.1.1 }
+  		 \label{fig:1.1.1}
+		\end{figure}
+ 
+  \section{\xiaosanhao \H 附录 \quad 测试平台与主要程序}
   
     \section{\xiaosanhao \H 参考文献}
     
       \section{\xiaosanhao \H 致谢}
+      
+      
  \end{document}

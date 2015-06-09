@@ -6,12 +6,36 @@
 \contentsline {subsection}{\numberline {1.3}\H 论文内容结构}{1}
 \contentsline {paragraph}{ \hskip 1em\relax }{1}
 \contentsline {paragraph}{ \hskip 1em\relax }{1}
-\contentsline {paragraph}{ \hskip 1em\relax }{1}
+\contentsline {paragraph}{ \hskip 1em\relax }{2}
+\contentsline {paragraph}{ \hskip 1em\relax }{2}
+\contentsline {paragraph}{ \hskip 1em\relax }{2}
 \contentsline {section}{\numberline {2}\fontsize {15pt}{\baselineskip }\selectfont \H 第二章 \hskip 1em\relax 单片机的选型与介绍}{2}
-\contentsline {section}{\numberline {3}\fontsize {15pt}{\baselineskip }\selectfont \H 第三章 \hskip 1em\relax 软件滤波算法的选择与实现}{2}
-\contentsline {section}{\numberline {4}\fontsize {15pt}{\baselineskip }\selectfont \H 第四章 \hskip 1em\relax 恒虚警算法的选择与实现}{2}
-\contentsline {section}{\numberline {5}\fontsize {15pt}{\baselineskip }\selectfont \H 第五章 \hskip 1em\relax 系统分析与改进}{2}
-\contentsline {section}{\numberline {6}\fontsize {15pt}{\baselineskip }\selectfont \H 附录A \hskip 1em\relax 测试平台与实物}{2}
-\contentsline {section}{\numberline {7}\fontsize {15pt}{\baselineskip }\selectfont \H 附录B \hskip 1em\relax 主要程序}{2}
-\contentsline {section}{\numberline {8}\fontsize {15pt}{\baselineskip }\selectfont \H 参考文献}{2}
-\contentsline {section}{\numberline {9}\fontsize {15pt}{\baselineskip }\selectfont \H 致谢}{2}
+\contentsline {subsection}{\numberline {2.1}\H MSP430f149片内资源简介}{2}
+\contentsline {subsubsection}{\numberline {2.1.1}\H 时钟模块}{2}
+\contentsline {subsubsection}{\numberline {2.1.2}\H A/D转换模块}{4}
+\contentsline {subsubsection}{\numberline {2.1.3}\H USART 串行异步通讯模块}{5}
+\contentsline {subsection}{\numberline {2.2}\H MSP430f149在本设计中的应用}{7}
+\contentsline {section}{\numberline {3}\fontsize {15pt}{\baselineskip }\selectfont \H 第三章 \hskip 1em\relax 软件滤波算法的选择与实现}{7}
+\contentsline {subsection}{\numberline {3.1}\H 常见滤波算法介绍}{7}
+\contentsline {subsubsection}{\numberline {3.1.1}\H 限幅滤波法}{7}
+\contentsline {subsubsection}{\numberline {3.1.2}\H 算术平均滤波法}{8}
+\contentsline {subsubsection}{\numberline {3.1.3}\H 递推平均滤波法}{8}
+\contentsline {subsubsection}{\numberline {3.1.4}\H 消抖滤波法}{9}
+\contentsline {subsubsection}{\numberline {3.1.5}\H IIR 数字滤波器 }{9}
+\contentsline {subsection}{\numberline {3.2}\H 本设计中滤波算法的选择与具体实现}{10}
+\contentsline {section}{\numberline {4}\fontsize {15pt}{\baselineskip }\selectfont \H 第四章 \hskip 1em\relax 恒虚警技术的分类与选择}{10}
+\contentsline {subsection}{\numberline {4.1}\H 目标信号检测的基本原理}{10}
+\contentsline {subsection}{\numberline {4.2}\H 恒虚警技术简介}{12}
+\contentsline {subsubsection}{\numberline {4.2.1}\H 恒虚警技术的目的与方法 }{12}
+\contentsline {paragraph}{ \hskip 1em\relax }{12}
+\contentsline {subsubsection}{\numberline {4.2.2}\H 恒虚警技术的分类 }{13}
+\contentsline {subsection}{\numberline {4.3}\H 本设计中恒虚警技术的选择 }{14}
+\contentsline {paragraph}{ \hskip 1em\relax }{14}
+\contentsline {section}{\numberline {5}\fontsize {15pt}{\baselineskip }\selectfont \H 第五章 \hskip 1em\relax 恒虚警技术的实现与分析}{14}
+\contentsline {subsection}{\numberline {5.1}\H 恒虚警技术的实现 }{14}
+\contentsline {subsubsection}{\numberline {5.1.1}\H Matlab仿真 }{14}
+\contentsline {subsubsection}{\numberline {5.1.2}\H 在MSP430f149中实现 }{15}
+\contentsline {subsection}{\numberline {5.2}\H 恒虚警检测器检测结果的分析 }{15}
+\contentsline {section}{\numberline {6}\fontsize {15pt}{\baselineskip }\selectfont \H 附录 \hskip 1em\relax 测试平台与主要程序}{15}
+\contentsline {section}{\numberline {7}\fontsize {15pt}{\baselineskip }\selectfont \H 参考文献}{15}
+\contentsline {section}{\numberline {8}\fontsize {15pt}{\baselineskip }\selectfont \H 致谢}{15}
