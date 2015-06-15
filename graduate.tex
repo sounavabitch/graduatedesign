@@ -1,13 +1,110 @@
 
-
-\documentclass[12pt]{article} %这个我就不多说了，头文件
+\documentclass[12pt,a4paper]{article} %这个我就不多说了，头文件
 \usepackage{url} %这个我也不多说了
 \usepackage{fontspec,xltxtra,xunicode} %最新的mactex都有
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{multirow}
 \usepackage{paralist}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{titlesec}
+%------------------------------纸张大小看geometry的手册----------------------------------
+\usepackage[dvipdfm]{geometry}
 
+\geometry{left=28mm,right=18mm,top=28mm,bottom=23mm}
+%-----------------------------字体支持-----------------------------------
+\usepackage{times}                       % 使用 Times New Roman 字体
+\usepackage{CJK,CJKnumb,CJKulem}         % 中文支持宏包
+%\usepackage{ccmap}                      % 使pdfLatex生成的文件支持复制等
+%\usepackage[mtbold,mtpluscal,mtplusscr]{mathtime}%数学环境用Times New Roman
+%-----------------------------页眉页脚-----------------------------------
+\usepackage{fancyhdr}                    % 页眉页脚相关宏包
+\pagestyle{fancy}                        % 页眉页脚风格
+%-----------------------------段落字体格式-------------------------------
+\usepackage{color}                       % 支持彩色
+\usepackage{indentfirst}                 % 首行缩进宏包
+\setlength{\parindent}{2em}             % 段落缩进
+\setlength{\parskip}{0.7ex plus0.3ex minus0.3ex} % 段落间距
+%\linespread{1.2}                        % 行距倍数
+%\renewcommand{\baselinestretch}{1.2}     % 行距倍数（同上）
+%\renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip} % 汉字字距
+%\newcommand{\aaa}{这是测试}             % 自定义文字块例子
+\newcommand{\song}{\CJKfamily{song}}     % 宋体
+\newcommand{\hei}{\CJKfamily{hei}}       % 黑体
+\newcommand{\fs}{\CJKfamily{fs}}         % 仿宋
+\newcommand{\kai}{\CJKfamily{kai}}       % 楷体
+\newcommand{\li}{\CJKfamily{li}}         % 隶书
+\newcommand{\you}{\CJKfamily{you}}       % 幼圆
+\newcommand{\wuhao}{\fontsize{10.5pt}{12.6pt}\selectfont}      % 五号字体
+\newcommand{\xiaosi}{\fontsize{12pt}{14pt}\selectfont}         % 小四字体
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont} % 四号字体
+\newcommand{\xiaosanhao}{\fontsize{15pt}{\baselineskip}\selectfont}    % 字号设置
+%\marginparpush                          %
+%-----------------------------超链接和标签-------------------------------
+\iffalse % 将这里改为\iftrue即可使用
+\ifx\pdfoutput\undefined % Not run pdftex
+% \ifx
+%    \usepackage[dvips]{hyperref}
+% \else
+\usepackage[dvipdfm]{hyperref}
+% \fi
+\AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
+\else
+\usepackage[pdftex]{hyperref}
+\fi
+\hypersetup{CJKbookmarks,%
+bookmarksnumbered,%
+colorlinks,%
+linkcolor=blue,%
+citecolor=blue,%
+hyperindex,%
+plainpages=false,%
+pdfstartview=FitH}
+\fi
+%--------------------------------注释------------------------------------
+\iffalse % 将这里改为\iftrue即可使用
+%注释掉一段内容
+\usepackage{verbatim}
+\begin{comment}
+This is a comment example.
+\end{comment}
+\fi
+%\makeatletter % @ is now a normal "letter" for Tex
+%\makeatother % @ is restored as a "non-letter" for Tex
+%--------------------------------其他宏包--------------------------------
+%\usepackage{amsmath,amsthm,amsfonts,amssymb,bm} % 数学宏包
+%\usepackage{graphicx,psfrag}                    % 图形宏包
+%\usepackage{makeidx}                            % 建立索引宏包
+%\usepackage{listings}                           % 源代码宏包
+
+
+
+
+
+
+
+\renewcommand\thefigure{\thesection.\arabic{figure}}
+\makeatletter
+\@addtoreset{figure}{section}
+\makeatother
+\renewcommand\thetable{\thesection.\arabic{table}}
+\makeatletter
+\@addtoreset{table}{section}
+\makeatother
+\lstset{language=C}%代码语言使用的是matlab
+\lstset{breaklines}%自动将长的代码行换行排版
+\lstset{extendedchars=false}%解决代码跨页时，章节标题，页眉等汉字不显示的问题
+\linespread{1.5}
+
+\newcommand\specialsectioning{\par
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \renewcommand\thesection{\relax}}
+
+\renewcommand\figurename{图} 
+\renewcommand\tablename{表} 
 \pagestyle{fancy}
 \defaultfontfeatures{Mapping=tex-text}
 \setromanfont{Songti SC} %设置中文字体
@@ -16,18 +113,17 @@
 \newfontfamily{\H}{Heiti SC} %设定新的字体快捷命令
 \newfontfamily{\E}{Weibei SC} %设定新的字体快捷命令
 
-\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}% 字号设置
-\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  % 字号设置
-\newcommand{\xiaosanhao}{\fontsize{15pt}{\baselineskip}\selectfont}    % 字号设置
-\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}   % 字号设置
-\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}  % 字号设置
-\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}    % 字号设置
+%\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}% 字号设置
+%\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  % 字号设置
+%\newcommand{\xiaosanhao}{\fontsize{15pt}{\baselineskip}\selectfont}    % 字号设置
+%\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}   % 字号设置
+%\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}  % 字号设置
+%\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}    % 字号设置
 
 
-
-%页眉设置
+ %页眉设置
 \lhead{}
-\chead{ 中北大学2011届毕业设计说明书}
+\chead{ 中北大学2015届毕业设计说明书}
 \rhead{}
 
 %页脚设置
@@ -44,7 +140,7 @@
   \tableofcontents 
     \newpage
   
-  \rfoot{第 \thepage 页 \quad 共  50 页}
+  \rfoot{第 \thepage 页 \quad 共  27 页}
  \pagenumbering{arabic}
      
     %第一章： 
@@ -52,31 +148,33 @@
   
   %1.1节
  	 \subsection{\H 研究背景、目的及意义}
- 	 \paragraph{ \quad} 在地震动检测系统中，通常会受到各种噪声的影响，而恒虚警率检测技术在一定程度上可以提高地震动检测系统在噪声环境下目标信号识别的准确性。为提高噪声环境下目标信号检测的准确性，提高地震动检测系统的准确度，因此采用一定的虚警检测方法在噪声背景下将目标信号准确检测出来是有必要的。本设计在此背景之下，将对噪声环境下的恒虚警技术进行研究，并针对所使用的地震动检测系统选择合适的恒虚警处理方法。
+在地震动检测系统中，通常会受到各种噪声的影响，而恒虚警率检测技术在一定程度上可以提高地震动检测系统在噪声环境下目标信号识别的准确性。为提高噪声环境下目标信号检测的准确性，提高地震动检测系统的准确度，因此采用一定的虚警检测方法在噪声背景下将目标信号准确检测出来是有必要的。本设计在此背景之下，将对噪声环境下的恒虚警技术进行研究，并针对所使用的地震动检测系统选择合适的恒虚警处理方法。
  	 
  	 
   %1.2节
- 	 \subsection{\H 设计主要工作}
- 	 \paragraph{ \quad} 本设计使用单片机将前级传感器采集回来的模拟量进行采样处理并进行简单软件滤波使采样信号更加稳定、可靠，之后确定适当的恒虚警算法进行处理，并确定相应的门限因子，使后级可以更方便的使用信号进行进一步的处理、运算。因此，对本设计而言，主要工作有单片机的选型、软件滤波算法的对比与选择及恒虚警算法的实现等。具体流程框图如下
+ 	 \subsection{\H 设计主要工作}本设计使用单片机将前级传感器采集回来的模拟量进行采样处理并进行简单软件滤波使采样信号更加稳定、可靠，之后确定适当的恒虚警算法进行处理，并确定相应的门限因子，使后级可以更方便的使用信号进行进一步的处理、运算。因此，对本设计而言，主要工作有单片机的选型、软件滤波算法的对比与选择及恒虚警算法的实现等。具体流程框图如下
  	 
  	 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
  		  \centering
  		  \includegraphics[width=5in]{1.1.1.png} 
-  		  \caption{1.1.1 }
+  		  \caption{地震动传感器恒虚警处理模块框图 }
   		 \label{fig:1.1.1}
+
 		\end{figure}
  	 
  	 
  	%1.3节 
  	  \subsection{\H 论文内容结构}
-         \paragraph{ \quad} 第一章：绪论
+第一章：绪论
          \par 本章主要介绍了本设计的研究背景以及主要工作
-         \paragraph{ \quad} 第二章：单片机的选型与介绍
+\par 第二章：单片机的选型与介绍
           \par 本章主要介绍选择了MSP430f149型号的单片机作为主控芯片，对该型号单片机一些常用模块及优缺点进行了简单介绍并阐述了选择该型号单片机的理由。
-           \paragraph{ \quad} 第三章：软件滤波算法的选择与实现
+           \par 第三章：软件滤波算法的选择与实现
           \par 本章主要介绍常见的一些软件滤波算法，并结合单片机的处理能力以及信号的特性等选择出合适的滤波算法。
-            \paragraph{ \quad} 第四章：恒虚警算法的分类与选择
-             \paragraph{ \quad} 第五章：恒虚警技术的实现与分析
+            \par 第四章：恒虚警算法的分类与选择
+            \par 本章首先介绍了信号存在性原理，说明了检测系统在检测中对目标信号识别的理论依据；之后介绍了恒虚警算法的分类，指出了目前较为通用的三类恒虚警算法以及它们分别适合的背景，并着重介绍了均值恒虚警检测器；最后，结合本设计要求以及各方面因素，确定了一种合适的恒虚警检测器。
+             \par 第五章：恒虚警技术的实现与分析
+             \par 本章首先对上一章中选定的恒虚警检测器进行了仿真，利用蒙特卡罗方法，并利用Matlab对恒虚警算法进行了仿真并对仿真结果进行了分析；随后介绍了该恒虚警算法在单片机系统上的实现。
                
                
                
@@ -86,13 +184,13 @@
                    
                    
                    
-
+\newpage
 
 %!第二章
 
-\section{\xiaosanhao \H 第二章 \quad 单片机的选型与介绍}
+\section{\xiaosanhao \H  单片机的选型与介绍}
 %第二章 \LaTeXe
-本设计中，该系统主要需要A/D转换、运算及逻辑运算等功能。德州仪器公司生产的MSP430f149单片机是一款16位的单片机，具有体积小、功耗低等优点，其中内置12位A/D转换模块，配合其他多种片内资源，可以满足系统的需求，同时无需复杂的外围电路。
+ 本设计中，该系统主要需要A/D转换、运算及逻辑运算等功能。德州仪器公司生产的MSP430f149单片机是一款16位的单片机，具有体积小、功耗低等优点，其中内置12位A/D转换模块，配合其他多种片内资源，可以满足系统的需求，同时无需复杂的外围电路$^{[1]}$。
 	 \subsection{\H MSP430f149片内资源简介}
 	 	
 	 	\subsubsection{\H 时钟模块} 
@@ -100,7 +198,7 @@
 	 	\begin{figure}[H] %  figure placement: here, top, bottom, or page
  		  \centering
  		  \includegraphics[width=8cm]{2.1.1.jpg} 
-  		  \caption{2.1.1 caption}
+  		  \caption{时钟模块结构图}
   		 \label{fig:2.1.1}
 		\end{figure}
 		时钟模块对于单片机而言控制着指令执行的节拍，对于单片机功能精确执行有着重要的意义，MSP430F149有三个时钟信号源并提供三个时钟信号输出供其他模块使用，在其他模块中一般可通过控制寄存器xxCTL来实现输入时钟信号的选择，以使各模块工作在不同的频率之下，使得该单片机既可达到较高频率实现通信采样等功能又可实现低频精确控制提高单片机作用的时间精度。
@@ -122,7 +220,7 @@
 	 	\begin{figure}[H] %  figure placement: here, top, bottom, or page
  		  \centering
  		  \includegraphics[width=8cm]{2.1.2.jpg} 
-  		  \caption{2.1.2 caption}
+  		  \caption{A/D模块结构图}
   		 \label{fig:2.1.2}
 		\end{figure}
 		由图可知，ADC12 模块是由以下几部分组成:输入的 16 路模拟开关,ADC内部电压参考源,ADC12 内核,ADC 时钟源部分,采集与保持/触发源部分,ADC 数据输出部分, ADC 控制寄存器等组成。
@@ -132,6 +230,7 @@
 		
 		
 \begin{table}[h]
+\caption{A/D转换模块寄存器}
 			\begin{tabular}{|c|c|c|}
 			\hline
 			%\hline
@@ -155,14 +254,14 @@
 		&ADC12MEM0-ADC12MCTL15 & 存储寄存器 0-15 \\
 		\hline
 \end{tabular}
-\caption{My first table}
 \end{table}
 	对于A/D转换模块，一般操作步骤如下：
-	\par（1）、I/O复用，使指定I/O功能变为TXD/RXD（一般为P3.4/P3.5）；
-	 	\par （2）、使能 USART 模块并设置数据数据传输格式（一般为8n1，一个起始位,8个数据位,一个停止位）；
-	 	\par （3）、选择USART模块时钟信号源并设置波特率；
-	 	\par （4）、初始化USART状态机并使能接收中断；
-	 	\par （5）、向UxTXBUF发送缓冲寄存器中传送数据实现发送，利用USART接收中断，从UxRXBUF中读取接收到的信息。
+	\par（1）、I/O复用，使指定I/O功能变为 A/D电压输入（一般为P6.0～P6.7）；
+	 	\par （2）、设置A/D模块采样频率、采样时钟信号及参考电压等；
+	 	\par （3）、设置采样通道和转换方式；
+	 	\par （4）、初始化A/D模块使中断使能；
+	 	\par （5）、将A/D开始位置位；
+	 	\par （6）、将采样回的数字量从寄存器中取出并根据A/D位数及参考电压确定测量真实值。
 		
 			
 					
@@ -171,7 +270,7 @@
 	 	\begin{figure}[H] %  figure placement: here, top, bottom, or page
  		  \centering
  		  \includegraphics[width=8cm]{2.1.3.jpg} 
-  		  \caption{2.1.3 caption}
+  		  \caption{ 串行通讯模块结构图}
   		 \label{fig:2.1.3}
 		\end{figure}
 		在MSP430f149型号单片机中有两个通信硬件模块USART0 和 USART1，其寄存器如下（以USART0为例）：
@@ -179,6 +278,8 @@
 		
 		
 \begin{table}[h]
+\caption{USART0 的寄存器 （注：USART1与USART0相似，但寄存器地址不同。）}
+
 			\begin{tabular}{|c|c|c|c|c|}
 			\hline
 			%\hline
@@ -208,7 +309,6 @@
 		\hline
 
 \end{tabular}
-\caption{USART0 的寄存器 （注：USART1与USART0相似，但寄存器地址不同。）}
 \label{}
 \end{table}
 
@@ -226,7 +326,7 @@
 	 \begin{figure}[H] %  figure placement: here, top, bottom, or page
  		  \centering
  		  \includegraphics[width=8cm]{function.jpg} 
-  		  \caption{2.1.2 caption}
+  		  \caption{系统整体功能框图}
   		 \label{fig:2.1.2}
 		\end{figure}
 	 	
@@ -236,8 +336,8 @@
 
 
 %!第二章
-
- \section{\xiaosanhao \H 第三章 \quad 软件滤波算法的选择与实现}
+\newpage
+ \section{\xiaosanhao \H  软件滤波算法的选择与实现}
  
  
  	\subsection{\H 常见滤波算法介绍}
@@ -246,11 +346,11 @@
  		\begin{compactitem} 
  			\item 原理
  			\par 根据经验判断，确定两次采样允许的最大偏差值,记为$A$，当每次检测到新值时进行判断：
- 			\par 如果本次检测值  $CurValue$ 与上一次检测值 $PreValue $之差$CurValue－PreValue <= A$，则本次值有效，存入内存中；
- 			\par 如果本次检测值  $CurValue$ 与上一次检测值 $PreValue $之差$CurValue－PreValue >A$，则本次值$CurValue$无效，将其丢弃，使用上次值$PreValue $代替本次值$CurValue$，存入内存中。
+ 			\par 如果本次检测值  $CValue$ 与上一次检测值 $PValue $之差 $CValue－PValue <= A$，则本次值有效，存入内存中；
+ 			\par 如果本次检测值  $CValue$ 与上一次检测值 $PValue $之差$CValue－PValue >A$，则本次值$CValue$无效，将其丢弃，使用上次值$PValue $代替本次值$CValue$，存入内存中。
 			
 			\item 优点
-			\par 能有效克服因偶然因素引起的脉冲干扰，实现最基本的滤波。
+			\par 能有效克服因偶然因素引起的脉冲干扰，实现最基本的滤波$^{[2]}$。
 			
 			\item 缺点
 			\par 无法抑制周期性的干扰，平滑度差，且$A$的选择对结果有较大的影响
@@ -333,7 +433,7 @@
 		 \end{compactitem}	
  	
  	\subsection{\H 本设计中滤波算法的选择与具体实现}
- 	对于本设计中采样信号而言，对于信号精度要求并不高，且主要噪声为白噪声；单片机片内内存、运算速度也满足要求。因此，为处理方便，采用算数平均滤波法即可。考虑到信号的噪声背景与单片机处理速度等方面因素，将算数平均滤波法中的N选定为8.
+对于本设计中采样信号而言，对于信号精度要求并不高，且主要噪声为白噪声；单片机片内内存、运算速度也满足要求。因此，为处理方便，采用算数平均滤波法即可。考虑到信号的噪声背景与单片机处理速度等方面因素，将算数平均滤波法中的N选定为8.
  	\par 结合MSP430f149型号单片机，具体实现方法如下：
  	\par （1）、开启A/D转换模块，并进行初始化；
  	\par （2）、将每次采样到的数字量$s$进行累加，累加值记为$Sum_s$；
@@ -345,10 +445,10 @@
  
  %%%%%%!!the end of the chapter 3!!%%%%%%%%
  
- 
- \section{\xiaosanhao \H 第四章 \quad 恒虚警技术的分类与选择}
+ \newpage
+ \section{\xiaosanhao \H  恒虚警技术的分类与选择}
  	\subsection{\H 目标信号检测的基本原理}
- 	从经典信号检测理论中我们可知，最优检测系统一般可简化为两个部分：
+从经典信号检测理论中我们可知，最优检测系统一般可简化为两个部分$^{[5]}$：
  	\par 1、门限检测器
  	\par 2、似然比
  	\par 在不同的检测系统中，使用不同的检测准则，则具有不同的似然比函数，因此会得到不同的检测门限值，例如使用纽曼－皮尔逊（Newman-Pearson）准则作为检测标准，则可以通过预先设置的虚警概率计算出相应的检测门限。
@@ -368,7 +468,7 @@ H0:s(t)=x(t) \quad 无目标\\
 
 \end{array} \right. 
 	\end{equation}
-	信号存在性检测问题就是要把所有观测空间划分为两个区域$D_0$和$D_1$，当观测值落入$D_0$时，判决$H_0$为真，即说明无目标信号出现；当观测值落入$D_1$时，判决$H_1$为真，即说明有目标信号出现。检测的关键就是寻找观察空间的最佳划分方法。
+	信号存在性检测问题就是要把所有观测空间划分为两个区域$D_0$和$D_1$，当观测值落入$D_0$时，判决$H0$为真，即说明无目标信号出现；当观测值落入$D_1$时，判决$H1$为真，即说明有目标信号出现。检测的关键就是寻找观察空间的最佳划分方法。
 	\par 下面将介绍几种常用的目标存在性检测准则：
 	
 	\begin{compactitem} 
@@ -376,6 +476,7 @@ H0:s(t)=x(t) \quad 无目标\\
  			\par 在知道先验概率和代价因子的情况下，就可以使用贝叶斯准则进行判决，先通过先验概率和代价因子计算出平均风险，然后尽可能时平均风险最小化。但一般情况下，在实际应用中，代价因子很难确定，常常假定正确的判断不付出代价，两类错误的代价相等，此时贝叶斯准则就等效于最小错误概率准则。
 			\item 极大极小化准则
 			\par 在工程中仅知道代价因子而不知道先验概率，所以不能使用贝叶斯准则，这时一种合理的方法是先求出最大风险的表达式，然后求该表达式的极小值，此即极大极小准则。
+			\par 由于极大极小化准则是在不知道$H1$和$H0$的先验概率的情况下，寻找最大的风险并将其最小化，即相当于在贝叶斯解中寻找最坏情况下的先验概率，这就等效于求解$\frac{dR}{dP(H1)}=0$.
 			\item 纽曼－皮尔逊（Newman-Pearson）准则
 			\par 在很多时候，我们很难确定代价因子和先验概率，这时就需要寻找一个不包含这两个因素的最佳准则，这就是纽曼－皮尔逊准则：在$P(D1|H0)$条件下，使检测概率$P(D0|H1)$最大。在检测系统中，噪声的功率是不断变化的，如果采用恒定的门限值，虚警概率也会随之不断变化。为使虚警概率保持恒定，并保持检测概率尽可能的大，我们一般要采用纽曼－皮尔逊准则，即使下面的目标函数：
 			\begin{equation}
@@ -388,16 +489,16 @@ H0:s(t)=x(t) \quad 无目标\\
 	其中，$C_{10}$表示虚警代价$C_{01}$表示漏报代价。
 
 		 \end{compactitem}	
-	在实际检测中，检测结果可能存在三种情况：
+	在实际检测中，检测结果可能存在三种情况$^{[7]}$：
 	\par （1）目标存在的情况下检测出目标存在，称为检测；
 	\par （2）只存在噪声但是检测出目标存在，称为虚警；
 	\par （3）目标存在的情况下未检测出目标存在，称为漏检。
 	\par 其中，虚警可用虚警概率来表示，虚警概率是指当地震动检测系统检测信号中只存在噪声的时候，该信号超过检测门限制的概率。门限电压与噪声功率息息相关，如果门限电压过低，则可能大量噪声通过，导致虚警概率过高；如果门限电压过高，目标将很难通过门限，造成漏检，使得系统可能无法达到预期的检测概率。
-	\par 因此我们根据某一检测准则，根据虚警概率等信息确定出检测门限，并通过信号过门限的情况，即可判决目标信号的存在与否。
+	\par 因此我们根据某一检测准则，再根据虚警概率等信息确定出检测门限，并通过信号过门限的情况，即可判决目标信号的存在与否。
 	
  	\subsection{\H 恒虚警技术简介}
- 	\subsubsection{\H 恒虚警技术的目的与方法 } 
- 	\paragraph{ \quad}  恒虚警率处理是通过给检测策略提供检测阈值并使虚警概率恒定且最小化的一种信号处理算法， 其目的是保持信号检测时的虚警概率恒定并保证外部噪声等干扰因素对系统的虚警概率影响最小。通过门限随着背景噪声的强度自适应变化，保持虚警概率恒定。当目标信号不存在即仅存在噪声信号的情况下，检出有目标存在的概率称为虚警概率（用$P_f$来表示），而当目标存在时，检测出目标的概率为检测概率（用$P_d$来表示）。
+ 	\subsubsection{\H 恒虚警技术的目的与方法 }
+ 	  恒虚警率处理是通过给检测策略提供检测阈值并使虚警概率恒定且最小化的一种信号处理算法， 其目的是保持信号检测时的虚警概率恒定并保证外部噪声等干扰因素对系统的虚警概率影响最小。通过门限随着背景噪声的强度自适应变化，保持虚警概率恒定。当目标信号不存在即仅存在噪声信号的情况下，检出有目标存在的概率称为虚警概率（用$P_f$来表示），而当目标存在时，检测出目标的概率为检测概率（用$P_d$来表示）。
  	\par 由上述介绍可知，恒虚警技术的主要目的即为使用某种特定的算法在某种特定的环境背景下（如本设计中的噪声背景下）计算出一个门限电压$U_T$对采样信号进行检测判别是否有目标出现，同时要尽可能保持一个较低的恒定的虚警概率$P_f$，并使得系统的检测概率$P_d$为最大。
 
  	\par 在设计中，我们用$r$表示噪声幅值，假设虚警门限为$U_T$，虚警概率为 $P_f$可以由下式求出：
@@ -412,7 +513,7 @@ H0:s(t)=x(t) \quad 无目标\\
 	\end{equation}
 	
 	如果$\sigma^2$为常数，则可根据公式(5)确定出一个恒定的检测门限，但在一般情况下噪声信号为一个随机变化的值，因此，为保证虚警概率恒定需要不断改变检测门限值。因这种不断改变检测门限来保持虚警概率$P_f$恒定的过程即为恒虚警（CFAR）。
-	\par 由上述可知，利用恒虚警算法求检测门限的过程可分为三步：
+	\par 由上述可知，利用恒虚警算法求检测门限的过程可分为三步$^{[3]}$：
 	\begin{compactitem} 
  			\item 确定噪声分布的概率密度函数
  			
@@ -426,6 +527,8 @@ H0:s(t)=x(t) \quad 无目标\\
 
  	\subsubsection{\H 恒虚警技术的分类 } 
  	\begin{table}[h]
+ 	 \centering
+ 	 \caption{恒虚警技术的分类}
 			\begin{tabular}{|c|c|c|}
 			\hline
 			%\hline
@@ -451,33 +554,34 @@ H0:s(t)=x(t) \quad 无目标\\
 		&剔除平均恒虚警检测器 &  TM-CFAR\\
 		\hline
 \end{tabular}
-\caption{恒虚警技术的分类}
 \end{table}
-		由上表可知，主要恒虚警算法主要存在三大类，分别为均值类、排序类和删除类，其中排序类与删除类主要为了应对杂波背景下的恒虚警检测，而均值类的恒虚警算法更适合噪声背景下的恒虚警检测，故此处将重点介绍均值类中的四种恒虚警检测算法。
-		\par 其处理过程如下框图：
-		\begin{figure}[h] %  figure placement: here, top, bottom, or page
+		由下表可知，主要恒虚警算法主要存在三大类，分别为均值类、排序类和删除类，其中排序类与删除类主要为了应对杂波背景下的恒虚警检测$^{[9]}$，而均值类的恒虚警算法更适合噪声背景下的恒虚警检测，故此处将重点介绍均值类中的四种恒虚警检测算法。
+			 \par 其处理过程如下框图：
+		\begin{figure}[!htp] %  figure placement: here, top, bottom, or page
  		  \centering
  		  \includegraphics[width=5in]{mlcfar.jpg} 
-  		  \caption{1.1.1 }
+  		  \caption{恒虚警算法处理框图}
   		 \label{fig:1.1.1}
 		\end{figure}
+		
 		\begin{compactitem} 
  			\item 单元平均恒虚警检测器（CA-CFAR）
- 			
+ 			\par 如图所示，将输入信号看作一个滑动窗口，其中n个单元D为检测单元，对左边n个单元求平均，得到一个$\overline{X}$，对右边n个单元求平均，得到一个$\overline{Y}$，则将$(\overline{X}＋\overline{Y})/2$与噪声信号的幅值相乘即可得到一个值$U_T$即为检测门限，将此值与D的平均值$\overline{X_D}$进行比较，即可对该单元进行检测，判决是否有目标信号出现。
  			
 			\item 平均选大恒虚警检测器  （GO-CFAR）
-
-			\item 平均选小恒虚警检测器  （ SO-CFAR）
+			\par 如图所示，将输入信号看作一个滑动窗口，其中n个单元D为检测单元，对左边n个单元求平均，得到一个$\overline{X}$，对右边n个单元求平均，得到一个$\overline{Y}$，则将$max(\overline{X},\overline{Y})$与噪声信号的幅值相乘即可得到一个值$U_T$即为检测门限，将此值与D的平均值$\overline{X_D}$进行比较，即可对该单元进行检测，判决是否有目标信号出现。
 			
+			\item 平均选小恒虚警检测器  （ SO-CFAR）
+			\par 如图所示，将输入信号看作一个滑动窗口，其中n个单元D为检测单元，对左边n个单元求平均，得到一个$\overline{X}$，对右边n个单元求平均，得到一个$\overline{Y}$，则将$min(\overline{X},\overline{Y})$与噪声信号的幅值相乘即可得到一个值$U_T$即为检测门限，将此值与D的平均值$\overline{X_D}$进行比较，即可对该单元进行检测，判决是否有目标信号出现。
 			\item 加权平均恒虚警检测器 （  WCA-CFAR）
-
+			\par 如图所示，将输入信号看作一个滑动窗口，其中n个单元D为检测单元，对左边n个单元求平均，得到一个$\overline{X}$，对右边n个单元求平均，得到一个$\overline{Y}$，则将$(\mu \overline{X}+\lambda \overline{Y})$作为一个因子与噪声信号的幅值相乘即可得到一个值$U_T$即为检测门限，其中$\mu$和$\lambda$分别为$\overline{X}$与$\overline{Y}$的权重值，将此值与D的平均值$\overline{X_D}$进行比较，即可对该单元进行检测，判决是否有目标信号出现。
 
 		 \end{compactitem}	
 		
 		
 	\subsection{\H 本设计中恒虚警技术的选择 } 
- 	  \paragraph{ \quad} 根据4.1节所介绍的关于信号存在性检测方法及4.2节恒虚警技术的相关介绍并结合地震动检测系统的实际情况我们可知，在本检测系统中，错误代价和先验概率往往未知，因此应当采用纽曼－皮尔逊准则进行检测较为合适。即在给定的恒虚警概率$P_f$的前提下，保持$P_f$使得检测概率$P_d$最大。
- 	\par 首先，假设地震动检测系统中存在的噪声可近似的看作均值为零的高斯白噪声［赵也］，其概率密度函数为：
+根据4.1节所介绍的关于信号存在性检测方法及4.2节恒虚警技术的相关介绍并结合地震动检测系统的实际情况我们可知，在本检测系统中，错误代价和先验概率往往未知，因此应当采用纽曼－皮尔逊准则进行检测较为合适。即在给定的恒虚警概率$P_f$的前提下，保持$P_f$使得检测概率$P_d$最大。
+ 	\par 首先，假设地震动检测系统中存在的噪声可近似的看作均值为零的高斯白噪声$^{[7]}$，其概率密度函数为：
 	\begin{equation}
 	p(v) = \frac{1}{\sqrt{2\pi\sigma}}e^{-\frac{v^2}{2\sigma^2}}
 	\end{equation}
@@ -485,40 +589,262 @@ H0:s(t)=x(t) \quad 无目标\\
 	\begin{equation}
 	p(r) = \frac{r}{\sigma^2}e^{-\frac{r^2}{2\sigma^2}}  {\quad(r    \geq    0)}
 	\end{equation}
-	同时，根据本系统要求的虚警概率为$1次/24小时$，经过实际测量，我们可假设每小时平均检测50次，因此真实虚警概率约为$1/1200$，单元平均恒虚警检测器 CA-CFAR，即可满足系统设计要求。
+	同时，根据本系统要求的虚警概率为$1次/24小时$，经过实际测量，我们可假设每小时平均检测50次，因此真实虚警概率约为$1/1200$。故采用单元平均恒虚警检测器 CA-CFAR，即可满足系统设计要求。
 	\par 综上所述，根据噪声分布函数以及虚警概率的要求等方面，本设计可以采用瑞丽型单元平均恒虚警率检测器。而本设计最终也采用并实现了该恒虚警率检测器。 
- 	
- 
-  \section{\xiaosanhao \H 第五章 \quad 恒虚警技术的实现与分析}
-  地震动信号恒虚警处理
-  	\subsection{\H 恒虚警技术的实现 }
-  	\subsubsection{\H Matlab仿真 }
-  	通过第四章的分析，我们将采用瑞丽型单元平均恒虚警率检测器，由于在Matlab中可使用random函数产生随机数实现对瑞丽分布的噪声信号进行模拟，并通过编程，可实现CA-CFAR的仿真，具体执行算法步骤如下：
-  	\par （1）、根据信噪比产生一定的
-  	\subsubsection{\H 在MSP430f149中实现 }
-  	
-  	
-  	\subsection{\H 恒虚警检测器检测结果的分析 } 
-  	
-  	 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+ 	\newpage
+ %%第五章％％
+  \section{\xiaosanhao \H  恒虚警技术的实现与分析}
+  	\subsection{\H 恒虚警检测器的仿真与分析 }
+仿真分析通过蒙特卡罗（MonteCarlo）方法来进行模拟，通过第四章的介绍，我们将采用瑞丽型单元平均恒虚警率检测器，由于在Matlab中可使用random函数产生随机数实现对瑞丽分布的噪声信号进行模拟，并通过编程，可实现CA-CFAR的仿真，其执行流程如下图：
+  	\begin{figure}[htp] %  figure placement: here, top, bottom, or page
  		  \centering
- 		  \includegraphics[width=5in]{5db.jpg} 
-  		  \caption{1.1.1 }
+ 		  \includegraphics[width=9cm]{kuangtu.jpg} 
+  		  \caption{仿真程序流程图}
   		 \label{fig:1.1.1}
 		\end{figure}
+		\newpage
+  	\par 仿真结果如下所示分别为虚警概率为0.01和虚警概率为0.001时阈值门限与噪声信号的关系：
+ 
+ 
+ 
 		
-		 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+		
+		\begin{figure}[h]
+\begin{minipage}[bp]{0.5\linewidth}
+\centering
+\includegraphics[width=6cm]{11.jpg}
+\caption{Pf=0.01}
+\label{fig:side:a}
+\end{minipage}
+\begin{minipage}[bp]{0.5\linewidth}
+\centering
+\includegraphics[width=6cm]{22.jpg}
+\caption{Pf=0.001}
+\label{fig:side:b}
+\end{minipage}
+\end{figure}
+  	
+  	对于上图结果，我们可以看出，在恒虚警概率一定的情况下，可以实现滤波门限随噪声信号变化而变化，因此，根据实测信号超过门限电压的情况可以判决目标是否出现。
+  	此外，根据蒙特卡洛法，我们可以改变检测窗口N的值来进一步改变虚警效果，仿真数据如下：
+  	\begin{figure}[h] %  figure placement: here, top, bottom, or page
+  	 \caption{不同检测窗口下CFAR的性能}
  		  \centering
- 		  \includegraphics[width=5in]{30db.jpg} 
-  		  \caption{1.1.1 }
+ 		  \includegraphics[width=10cm]{data.jpg} 
   		 \label{fig:1.1.1}
 		\end{figure}
+  	
+  	\subsection{\H 在MSP430f149中实现恒虚警处理 }
+  		\subsubsection{\H 数据预处理 }
+  		通过前端A/D采集模块采集到数据后，要进行数据预处理，即要找到对提取信号特征有用的点，包括确定第一个分析点的位置、应取点的长度等$^{[3]}$。对信号$Z(f)$采样后，对人并不一定是从第一个采样点进行分析，而是要找到一个合适的点，在此称其为第一个数值分析点，由此点开始分析，然后确定所要分析的采样点的数目N。
+\par 1、第一数值分析点的确认
+\begin{figure}[h] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=14cm]{1.jpg} 
+  		  \caption{采样点示意图}
+  		 \label{fig:1.1.1}
+		\end{figure}
+
+  	设传感器没有输入时，采集到的噪声信号最大峰值为$\delta $，则对信号采样后要定义峰值为$a_1>2\delta $或$a_1<-2\delta $的点为第一个数值分析点（为分析方便，本系统中采用$a_1>2\delta$）。在本系统中$ \delta$ =32mv。
+数值分析点长度的确定
+设步行人员的单个脚步信号持续时间为$T$，采样频率为$fk$，则进行目标特征分析所取的点数应为$N=T fk$。于是进行数值分析的点应为$a_1$至$a_fk$。由于车辆运动产生的震动信号频率要高于人员脚步震动信号频率，所以用于分析人员脚步信号特征所取的点数n也能满足车辆信号特征的提取。通过查阅相关文献与采集大量步行人员脚步信号反复观察，每个脚步震动信号的持续时间约为150---300ms，若以1kHz的频率进行采样，则从第一个数值分析点开始取256个点，其时间为1/256s = 256ms，基本能取得单个脚步震动信号的全部信息$^{[6]}$。
+
+
+		\subsubsection{\H 恒虚警滤波 }
+		
+		本系统采用的恒虚警滤波算法流程图如下：
+\begin{figure}[H] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=5in]{2.jpg} 
+  		  \caption{恒虚警滤波算法流程图 }
+  		 \label{fig:1.1.1}
+\end{figure}
  
-  \section{\xiaosanhao \H 附录 \quad 测试平台与主要程序}
-  
+ 我们在A/D模块中断服务函数中进行恒虚警处理，部分代码如下：
+\begin{lstlisting}
+
+#pragma vector=ADC_VECTOR
+__interrupt void ADC12ISR (void)
+{
+  static uint index = 0;
+   results0[index] = ADC12MEM0;            // Move results
+   results1[index++] = ADC12MEM1;        // Move results
+  if(index== Num_of_Results0)
+  {
+        int i;
+        unsigned long sum0 =0,sum1=0;
+        index = 0;
+        for(i = 0; i < Num_of_Results0; i++)
+        {
+            sum0+= results0[i];
+            sum1+= results1[i];
+        }
+        sum0 >>= 4;                            //除以32
+        sum1 >>= 4;
+        clear_line(0,10,0);
+       choose_site(0,0,0);
+       printf_float(Trans_val(sum0)*Trans_val(sum0));
+        results[cnt++]=sum0*sum0;
+  }
+  if(cnt == Num_of_Results)   //if there are 128 sample point
+  {
+      int j;
+      unsigned long sum=0,ten_temp;
+       ten_temp=10*temp;
+      for(j=0;j<Num_of_Results;j++)
+      {
+          sum+=results[j];
+          if(results[j] > ten_temp) point_cnt++;
+      }
+      sum >>= 6;   //divided by 128
+      if(sum > ten_temp)
+      {
+        LCD_clear();
+        choose_site(0,2,0);
+          printf_int(point_cnt);puts_str("cnt");
+      }
+      else
+      {
+          temp=sum;
+          LCD_clear();
+          choose_site(0,2,0);
+          printf_int(temp); puts_str("temp");
+      }
+      cnt=0;
+      point_cnt=0;
+  }
+}
+
+\end{lstlisting}
+ \newpage
+ \specialsectioning
+ \titleformat{\section}{\centering\Huge\bfseries}{\,\thechapter\,}{1em}{}
+  \section{\xiaosanhao \H 附录}
+  \subsection*{\H 测试平台 }
+  \begin{figure}[h] %  figure placement: here, top, bottom, or page
+ 		  \centering
+ 		  \includegraphics[width=10cm]{shiwu.png} 
+  		  \caption{测试平台}
+  		 \label{fig:1.1.1}
+		\end{figure}
+		\par 本设计中的算法在均在上图所示开发板上实现。
+		\par 该系统由MSP430f149最小系统开发板、信号输入模块、显示模块等构成，实现了本设计中的所有功能，包括信号的A/D采集、采集信号的软件滤波、恒虚警处理等，最终能将处理好的数据发送至电脑并显示。
+   \subsection*{\H 主要程序 }
+   
+ 		\begin{compactitem} 
+ 			\item MATLAB仿真程序如下：
+ 			  \begin{lstlisting}
+   s=2;
+fa=0;d=0;
+% A 根据SNR设 
+SNR = 30;
+noiseA = exprnd(s,1,200);
+A=2*(1/(s^2))*10^(SNR/10);      
+SigPos=101;     
+sigA =zeros(1,200);
+sigA(SigPos) = A;
+indata = sigA+noiseA   ;%产生目标回波
+n=8;
+Pf=1e-4;
+T=(Pf)^(-1/(2*n))-1;
+thresholdsave=zeros(1,200);
+faPos=zeros(1,200);
+for i=1:200
+    if 8<i&&i<=192
+        cwin=[i-8:i-1 i+1:i+8];
+    elseif i==1
+        cwin=[i+1:i+16];
+    elseif i>1&&i<=8
+        cwin=[1:i-1 i+1:17];
+    elseif i>=193&&i<200
+        cwin=[184:i-1 i+1:200];
+    elseif i==200
+        cwin=[i-16:i-1];
+    end
+    Z=sum(indata(1,cwin));
+    threshold=Z*T;
+    thresholdsave(1,i)=threshold;
+         if indata(1,i)>threshold&&i==SigPos
+             d=d+1;
+         elseif indata(1,i)>threshold&&i~=SigPos
+             fa=fa+1;
+             faPos(1,i)=i;
+         end
+end
+%回波信号与检测门限的比较图%
+plot(20*log10(indata(1,:)));
+hold
+plot(20*log10(thresholdsave(1,:)),'r');
+xlabel('t');
+ylabel('幅值/dB')
+title('Pf=0.01时输入信号与检测门限的比较图')
+   \end{lstlisting}
+
+			
+
+			
+			\item    单片机初始化程序如下：
+  \begin{lstlisting}
+   /*****************************
+头文件声明
+*****************************/
+#include "msp430x14x.h"
+#include "5110.h"
+#include "adc12.h"
+#include "ClkIni.h"
+/*******************************
+主函数
+******************************/
+int main(void)
+{
+    WDTCTL = WDTPW + WDTHOLD;
+   ClkIni();
+   LCD_init();
+   ad_ini();
+   ad_start();
+   _EINT();
+   while(1);
+}
+
+   \end{lstlisting}
+			
+		 \end{compactitem}	
+
+ 
+ 
+    \newpage
+  \specialsectioning
+  \titleformat{\section}{\centering\Huge\bfseries}{\,\thechapter\,}{1em}{}
     \section{\xiaosanhao \H 参考文献}
-    
+    \noindent
+ [1]  Texas Instruments. MSP430X14X data sheet[M]. Texas  Instruments, 2000. \newline
+  [2] Texas Instruments. MSP430X43X, MSP430X43X1 Mixed Signal Microcontroller [EB/OL]. http://www.focus.ti.com/lit/ds/slas344g.pdf, 2009.11 \newline
+   [3]  泰龙．MSP430单片机常用模块与综合系统实例精讲[M]．北京：电子工业出版社，2007．\newline
+[4]  权希龙．地震动信号的识别和定位研究[D]．合肥：安徽大学，2010．
+\newline
+ [5]  胡大可．MSP430系列单片机C语言程序设计与开发[M]．北京：北京航空航天大学出版社，2002．\newline
+ [6]  张文栋．存储测试系统的设计理论及其应用[M]．北京：高等教育出版社，2002．\newline
+[7]  聂伟荣，朱继楠，郭亚军等．地震动信号的分析与目标识别[J]．电子科技大学学报，2003，32(1)：26-30．\newline
+ [8]  曹红兵，魏建明，刘海等．无线传感网络中多传感器特征融合算法研究[J]．电子与信息学报，2010，32(1)：166-171．\newline
+[9]  邢怀飞．智能光纤传感器网络地面目标识别若干问题研究[D]．北京：中国科学院半导体研究所，2008．\newline
+[10]  李秀英.无源单站定位技术研究[D]．成都：西南交通大学，2008．
+\newline
+ [11]  Mark Hewish. Little Brother is Watching You: Unattended Ground Sensors[J]. Defense Review, 2001,34(6):46-52.\newline
+ [12]  陶小亮．基于地震动的目标识别和人员定位算法的研究与实现[D]．南京：南京理工大学，2007．\newline
+ [13]  张建华．数字电子技术[M]．北京：机械工业出版社，1997．\newline
+ [14]  付丽琴，桂志国等．数字信号处理原理及应用[M]．北京：国防工业出版社，2004．\newline
+ [15]胡可欣,胡爱明. 雷达杂波环境恒虚警率处理的实现[J]. 舰船电子对 抗,2006,02:3-7. \newline
+[16]隋丹,葛临东. 一种简单高效的目标信号存在性检测算法[J]. 信息工程大学学 报,2006,04:387-390. \newline
+[17]赵也. 低信噪比下微弱多目标信号检测技术[D].电子科技大学,2013.\newline
+[18]赵海涛. 基于DSP和FPGA的雷达杂波恒虚警处理技术研究及性能分析[D].大连海事 大学,2012.\newline
+[19]刘雯雯,袁龙,刘子扬,彭涛,王文博. 宽频信号能量检测最优判决门限[J]. 北京邮电大学学报,2014,01:25-30.\newline
+[20]马林. 雷达恒虚警性能分析[J]. 现代雷达,1996,04:13-21+43.\newline
+[21]张剑. 雷达海杂波背景下的恒虚警率目标检测方法研究及实现[D].哈尔滨工程大 学,2008.\newline
+[22] 中航雷达与电子设备研究院编著.雷达系统[M].北京:国防工业出版社,2006. \newline
+[23] 何友,关键,彭应宁等编著.雷达自动检测与恒虚警处理[M].北京:清华大学出 版社,1999.
+    \newpage
+\specialsectioning
+\titleformat{\section}{\centering\Huge\bfseries}{\,\thechapter\,}{1em}{}
       \section{\xiaosanhao \H 致谢}
-      
-      
+
+在此首先感谢指导老师焦国太老师，在本科四年中，对我的发展规划都起到了很大的影响，不仅在此次毕业设计过程中，焦老师还在我申请的大学生创新创业项目中给予了很大的帮助；此外，还要感谢刘彩花学姐在我毕业设计过程中的悉心指导，从开题到完成论文过程中，给予了我非常重要的帮助；最后，感谢优秀的开源社区，感谢各类开源软件的贡献者，感谢优秀的排版软件\LaTeX， 感谢伟大的计算机学家Donald E. Knuth发明的\TeX ，感谢每一个给予过我帮助的人。
  \end{document}

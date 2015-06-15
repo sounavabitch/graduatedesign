@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013) (format=xelatex 2014.6.10)  9 JUN 2015 09:24
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013) (format=xelatex 2014.6.10)  12 JUN 2015 08:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -23,9 +23,9 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip10
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+(/usr/local/texlive/2013/../texmf-local/tex/latex/html/url.sty
+Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
+ names
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/fontspec/fontspec.sty
 Package: fontspec 2013/05/20 v2.3c Font selection for XeLaTeX and LuaLaTeX
@@ -104,12 +104,12 @@ Package: l3skip 2013/01/13 v4444 L3 Dimensions and skips
 \l_tmpb_skip=\skip46
 \g_tmpa_skip=\skip47
 \g_tmpb_skip=\skip48
-\c_zero_muskip=\muskip11
-\c_max_muskip=\muskip12
-\l_tmpa_muskip=\muskip13
-\l_tmpb_muskip=\muskip14
-\g_tmpa_muskip=\muskip15
-\g_tmpb_muskip=\muskip16
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/l3kernel/l3keys.sty
 Package: l3keys 2013/02/24 v4461 L3 Experimental key-value interfaces
@@ -494,13 +494,145 @@ Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \plparsep=\skip61
 \pl@lab=\toks21
 )
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count124
+\lst@gtempboxa=\box44
+\lst@token=\toks22
+\lst@length=\count125
+\lst@currlwidth=\dimen141
+\lst@column=\count126
+\lst@pos=\count127
+\lst@lostspace=\dimen142
+\lst@width=\dimen143
+\lst@newlines=\count128
+\lst@lineno=\count129
+\lst@maxwidth=\dimen144
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count130
+\lst@skipnumbers=\count131
+\lst@framebox=\box45
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip62
+\subfigcapskip=\skip63
+\subfigcaptopadj=\dimen145
+\subfigbottomskip=\skip64
+\subfigcapmargin=\dimen146
+\subfiglabelskip=\skip65
+\c@subfigure=\count132
+\c@lofdepth=\count133
+\c@subtable=\count134
+\c@lotdepth=\count135
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2013/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip66
+\subfig@bottom=\skip67
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2011/12/15 v2.10.0 Sectioning titles
+\ttl@box=\box46
+\beforetitleunit=\skip68
+\aftertitleunit=\skip69
+\ttl@plus=\dimen147
+\ttl@minus=\dimen148
+\ttl@toksa=\toks23
+\titlewidth=\dimen149
+\titlewidthlast=\dimen150
+\titlewidthfirst=\dimen151
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+\Gm@cnth=\count136
+\Gm@cntv=\count137
+\c@Gm@tempcnt=\count138
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks24
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/cjk/texinput/CJK.sty
+Package: CJK 2012/05/07 4.8.3
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/cjk/texinput/mule/MULEenc.sty
+Package: MULEenc 2012/05/07 4.8.3
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/cjk/texinput/CJK.enc
+File: CJK.enc 2012/05/07 4.8.3
+)
+LaTeX Info: Redefining \selectfont on input line 755.
+\CJK@indent=\box47
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/cjk/texinput/CJKnumb.sty
+Package: CJKnumb 2012/05/07 4.8.3
+\CJK@q=\count139
+\CJK@r=\count140
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/cjk/texinput/CJKulem.sty
+Package: CJKulem 2012/05/07 4.8.3
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box48
+\UL@hyphenbox=\box49
+\UL@skip=\skip70
+\UL@hook=\toks25
+\UL@height=\dimen160
+\UL@pe=\count141
+\UL@pixel=\dimen161
+\ULC@box=\box50
+Package: ulem 2012/05/18
+\ULdepth=\dimen162
+)
+\UL@lastkern=\dimen163
+\CJK@skip=\skip71
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: xetex.def on input line 130.
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+)
 \g__file_internal_ior=\read1
 .................................................
 . fontspec info: "no-scripts"
 . 
 . Font Songti SC does not contain any OpenType `Script' information.
 .................................................
-\g_fontspec_family_Songti SC_int=\count124
+\g_fontspec_family_Songti SC_int=\count142
 .................................................
 . fontspec info: "no-font-shape"
 . 
@@ -532,7 +664,7 @@ Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 . 
 . Font Heiti SC does not contain any OpenType `Script' information.
 .................................................
-\g_fontspec_family_Heiti SC_int=\count125
+\g_fontspec_family_Heiti SC_int=\count143
 .................................................
 . fontspec info: "no-font-shape"
 . 
@@ -555,8 +687,8 @@ Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 . * 'bold italic' with NFSS spec.:
 . <->"Heiti SC/BI/AAT:mapping=tex-text;"
 .................................................
-LaTeX Info: Redefining \H on input line 16.
-\g_fontspec_family_Weibei SC_int=\count126
+LaTeX Info: Redefining \H on input line 113.
+\g_fontspec_family_Weibei SC_int=\count144
 .................................................
 . fontspec info: "no-font-shape"
 . 
@@ -597,29 +729,102 @@ LaTeX Warning: Label `fig:1.1.1' multiply defined.
 
 LaTeX Warning: Label `fig:1.1.1' multiply defined.
 
+
+LaTeX Warning: Label `fig:1.1.1' multiply defined.
+
+
+LaTeX Warning: Label `fig:1.1.1' multiply defined.
+
+
+LaTeX Warning: Label `fig:1.1.1' multiply defined.
+
 )
 \openout1 = `graduate.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 42.
-LaTeX Font Info:    Try loading font information for T3+cmr on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for T3/cmr/m/n on input line 138.
+LaTeX Font Info:    Try loading font information for T3+cmr on input line 138.
  (/usr/local/texlive/2013/texmf-dist/tex/latex/tipa/t3cmr.fd
 File: t3cmr.fd 2001/12/31 TIPA font definitions
 )
-LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C00/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C05/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C09/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C10/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C20/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C19/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C40/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C42/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C43/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C50/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C52/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C49/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C60/mj/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C61/mj/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C63/mj/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C64/mj/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C65/mj/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C70/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C31/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C32/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C33/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C34/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C35/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C36/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C37/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C80/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C81/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C01/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C11/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C21/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C41/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for C62/song/m/n on input line 138.
+LaTeX Font Info:    ... okay on input line 138.
 .................................................
 . fontspec info: "setup-math"
 . 
@@ -627,72 +832,108 @@ LaTeX Font Info:    ... okay on input line 42.
 .................................................
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 42.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 42.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 42.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 42.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 42.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 42.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 42.
-LaTeX Font Info:    Redeclaring math accent \check on input line 42.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 42.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 42.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 42.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 42.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 42.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 138.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 138.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 138.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 138.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 138.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 138.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 138.
+LaTeX Font Info:    Redeclaring math accent \check on input line 138.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 138.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 138.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 138.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 138.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 42.
+(Font)              `operators' in the math version `normal' on input line 138.
+
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> EU1/SongtiSC(0)/m/n on input line 42.
+(Font)                  OT1/cmr/m/n --> EU1/SongtiSC(0)/m/n on input line 138.
 LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 42.
+(Font)              `operators' in the math version `bold' on input line 138.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> EU1/SongtiSC(0)/m/n on input line 42.
+(Font)                  OT1/cmr/bx/n --> EU1/SongtiSC(0)/m/n on input line 138.
+
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  EU1/SongtiSC(0)/m/n --> EU1/SongtiSC(0)/m/n on input li
-ne 42.
+ne 138.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  EU1/SongtiSC(0)/m/n --> EU1/SongtiSC(0)/m/n on input li
-ne 42.
+ne 138.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> EU1/SongtiSC(0)/m/it on input line 42.
-
+(Font)                  OT1/cmr/m/it --> EU1/SongtiSC(0)/m/it on input line 138
+.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> EU1/SongtiSC(0)/bx/n on input line 42.
-
+(Font)                  OT1/cmr/bx/n --> EU1/SongtiSC(0)/bx/n on input line 138
+.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 42.
+(Font)                  OT1/cmss/m/n --> EU1/phv/m/n on input line 138.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 42.
+(Font)                  OT1/cmtt/m/n --> EU1/pcr/m/n on input line 138.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  EU1/SongtiSC(0)/m/n --> EU1/SongtiSC(0)/bx/n on input l
-ine 42.
+ine 138.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
 (Font)                  EU1/SongtiSC(0)/m/n --> EU1/SongtiSC(0)/bx/n on input l
-ine 42.
+ine 138.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> EU1/SongtiSC(0)/bx/it on input line 4
-2.
+(Font)                  OT1/cmr/bx/it --> EU1/SongtiSC(0)/bx/it on input line 1
+38.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> EU1/lmss/bx/n on input line 42.
+(Font)                  OT1/cmss/bx/n --> EU1/phv/bx/n on input line 138.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> EU1/lmtt/bx/n on input line 42.
+(Font)                  OT1/cmtt/m/n --> EU1/pcr/bx/n on input line 138.
+\c@lstlisting=\count145
+
+*geometry* detected driver: dvipdfm
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvipdfm
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(79.66771pt, 466.62521pt, 51.21495pt)
+* v-part:(T,H,B)=(79.66771pt, 699.9378pt, 65.44133pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=466.62521pt
+* \textheight=699.9378pt
+* \oddsidemargin=7.39772pt
+* \evensidemargin=7.39772pt
+* \topmargin=-29.60228pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
 LaTeX Font Warning: Font shape `EU1/SongtiSC(0)/bx/n' undefined
-(Font)              using `EU1/SongtiSC(0)/m/n' instead on input line 44.
+(Font)              using `EU1/SongtiSC(0)/m/n' instead on input line 140.
 
 (./graduate.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -701,10 +942,6 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
-)
-\tf@toc=\write3
-\openout3 = `graduate.toc'.
-
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -714,64 +951,67 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [1
 
-] [2]
+])
+\tf@toc=\write3
+\openout3 = `graduate.toc'.
+
+ [2]
 File: 1.1.1.png Graphic file (type QTm)
- <use  "1.1.1.png" > [1]
+ <use  "1.1.1.png" > [1] [2]
 File: 2.1.1.jpg Graphic file (type QTm)
- <use  "2.1.1.jpg" > [2] [3]
+ <use  "2.1.1.jpg" > [3]
 File: 2.1.2.jpg Graphic file (type QTm)
 
-<use  "2.1.2.jpg" >
-Overfull \hbox (2.72688pt too wide) in paragraph at lines 128--130
-\EU1/SongtiSC(0)/bx/n/12 内 部 电 压 参 考 源,ADC12 内 核,ADC 时 钟 源 部 分, 采 集 与 保 持/ 触 发 
-源 部 分,ADC
+<use  "2.1.2.jpg" > [4]
+File: 2.1.3.jpg Graphic file (type QTm)
+ <use  "2.1.3.jpg" > [5] [6]
+File: function.jpg Graphic file (type QTm)
+ <use  "function.jpg" >
+[7] [8] [9] [10]
+Overfull \hbox (5.79204pt too wide) in paragraph at lines 470--472
+\EU1/SongtiSC(0)/bx/n/12 信 号 存 在 性 检 测 问 题 就 是 要 把 所 有 观 测 空 间 划 分 为 两 个 区 域$\O
+ML/cmm/m/it/12 D[]$\EU1/SongtiSC(0)/bx/n/12 和$\OML/cmm/m/it/12 D[]$\EU1/SongtiS
+C(0)/bx/n/12 ， 当 观 测 值 落 入$\OML/cmm/m/it/12 D[]$\EU1/SongtiSC(0)/bx/n/12 时，
  []
 
-
-Overfull \hbox (19.032pt too wide) in paragraph at lines 135--158
-[][] 
+[11] [12]
+Overfull \hbox (10.6588pt too wide) in paragraph at lines 510--511
+[]\EU1/SongtiSC(0)/bx/n/12 根 据 纽 曼 － 皮 尔 逊 准 则， 可 在 已 知 虚 警 概 率$\OML/cmm/m/it/1
+2 P[]$\EU1/SongtiSC(0)/bx/n/12 的 情 况 下， 由 公 式 (2) 推 出 门 限 电 压$\OML/cmm/m/it/12 
+U[]$\EU1/SongtiSC(0)/bx/n/12 为： 
  []
 
+File: mlcfar.jpg Graphic file (type QTm)
+<use  "mlcfar.jpg" > [13] [14] [15]
+File: kuangtu.jpg Graphic file (type QTm)
+ <use  "kuangtu.jpg" > [16]
+File: 11.jpg Graphic file (type QTm)
+
+<use  "11.jpg" >
+File: 22.jpg Graphic file (type QTm)
+ <use  "22.jpg" >
+Overfull \hbox (2.0pt too wide) in paragraph at lines 613--625
+[]$[]$ $[]$ 
+ []
+
+File: data.jpg Graphic file (type QTm)
+<use  "data.jpg" >
+File: 1.jpg Graphic file (type QTm)
+ <use  "1.jpg" >
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[17]
+File: 2.jpg Graphic file (type QTm)
+ <use  "2.jpg" > [18]
 
-Overfull \hbox (2.2607pt too wide) in paragraph at lines 161--162
-[]\EU1/SongtiSC(0)/bx/n/12 （1）、 I/ O 复 用， 使 指 定 I/ O 功 能 变 为 TXD/ RXD（一 般 为 P3.
-4/ P3.5）； 
- []
+LaTeX Font Warning: Font shape `EU1/SongtiSC(0)/m/it' undefined
+(Font)              using `EU1/SongtiSC(0)/m/n' instead on input line 669.
 
-[4]
-File: 2.1.3.jpg Graphic file (type QTm)
- <use  "2.1.3.jpg" > [5] [6]
-Overfull \hbox (2.2607pt too wide) in paragraph at lines 219--220
-[]\EU1/SongtiSC(0)/bx/n/12 （1）、 I/ O 复 用， 使 指 定 I/ O 功 能 变 为 TXD/ RXD（一 般 为 P3.
-4/ P3.5）； 
- []
-
-File: function.jpg Graphic file (type QTm)
-<use  "function.jpg" >
-Overfull \hbox (79.48956pt too wide) in paragraph at lines 249--250
-[]\EU1/SongtiSC(0)/bx/n/12 如 果 本 次 检 测 值 $\OML/cmm/m/it/12 CurValue$ \EU1/Songt
-iSC(0)/bx/n/12 与 上 一 次 检 测 值 $\OML/cmm/m/it/12 PreValue$\EU1/SongtiSC(0)/bx/n/1
-2 之 差$\OML/cmm/m/it/12 CurValue[]PreValue <\OT1/cmr/m/n/12 =
- []
-
-
-Overfull \hbox (70.35077pt too wide) in paragraph at lines 250--251
-[]\EU1/SongtiSC(0)/bx/n/12 如 果 本 次 检 测 值 $\OML/cmm/m/it/12 CurValue$ \EU1/Songt
-iSC(0)/bx/n/12 与 上 一 次 检 测 值 $\OML/cmm/m/it/12 PreValue$\EU1/SongtiSC(0)/bx/n/1
-2 之 差$\OML/cmm/m/it/12 CurValue[]PreValue >
- []
-
-[7] [8] [9] [10] [11] [12]
-File: mlcfar.jpg Graphic file (type QTm)
- <use  "mlcfar.jpg" > [13]
-File: 5db.jpg Graphic file (type QTm)
- <use  "5db.jpg" > [14]
-File: 30db.jpg Graphic file (type QTm)
-
-<use  "30db.jpg" > [15] [16] (./graduate.aux)
+[19] [20] [21]
+File: shiwu.png Graphic file (type QTm)
+ <use  "shiwu.png" > [22] [23] [24] [25] [26] [27]
+(./graduate.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -780,12 +1020,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 14372 strings out of 493938
- 315804 string characters out of 6148857
- 315181 words of memory out of 5000000
- 17504 multiletter control sequences out of 15000+600000
- 6576 words of font info for 48 fonts, out of 8000000 for 9000
+ 17752 strings out of 493938
+ 360743 string characters out of 6148857
+ 440605 words of memory out of 5000000
+ 20809 multiletter control sequences out of 15000+600000
+ 6690 words of font info for 50 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 46i,11n,43p,581b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,12n,49p,581b,950s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on graduate.pdf (18 pages).
+Output written on graduate.pdf (29 pages).
